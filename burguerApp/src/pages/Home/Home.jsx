@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown } from '../../components/Dropdown/Dropdown';
+import { Dropdowns } from '../../components/Dropdowns/Dropdowns';
 
 import { Header } from '../../components/Header/Header';
 
@@ -7,7 +7,7 @@ export const Home = () => {
   return (
     <div>
       <Header />
-      <Dropdown />
+      <Dropdowns />
     </div>
   );
 };

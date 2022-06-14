@@ -3,4 +3,5 @@ export const obtenerCategorias = async () => {
   let res = await fetch(`${url}` + '/categorias');
   let data = await res.json();
   console.log(data);
+  return data;
 };
