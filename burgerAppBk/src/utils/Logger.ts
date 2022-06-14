@@ -1,6 +1,5 @@
 import chalk from "chalk";
 
-
 class Logger{
     public static success(msg:string | number){
         console.log(chalk.green(msg));
@@ -12,4 +11,5 @@ class Logger{
         console.log(chalk.red(msg));
     }
 }
+
 export default Logger;
