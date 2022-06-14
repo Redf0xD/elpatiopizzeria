@@ -4,6 +4,7 @@ export const GlobalContext = createContext(null);
 
 export const ContextProvider = (props) => {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
 
   ///funciones que modifican estados
 
@@ -13,6 +14,8 @@ export const ContextProvider = (props) => {
         value={{
           categories,
           setCategories,
+          products,
+          setProducts,
         }}
       >
         {props.children}
