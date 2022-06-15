@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './Dropdowns.module.css';
 import { useEffect } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
 import { Dropdown } from '../Dropdown/Dropdown';
@@ -16,7 +15,7 @@ export const Dropdowns = () => {
   // console.log('llega producto?', products);
 
   return (
-    <main className={styles.conteiner}>
+    <main className="grid gap-3">
       {categories?.map((category) => {
         return (
           <Dropdown

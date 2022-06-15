@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Producto } from '../Producto/Producto';
-import styles from '../Dropdown/Dropdown.module.css';
 
 export const Dropdown = ({ title, subtitle, image, product }) => {
   const [showProducts, setShowProducts] = useState(false);
@@ -14,7 +13,7 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
       <h2>{title}</h2>
       {subtitle ? <h3>{subtitle}</h3> : null}
       <img onClick={handleClick} src={image} alt={title} />
-      <section className={styles.productos}>
+      <section className="">
         {showProducts &&
           product?.map((product) => {
             return (
