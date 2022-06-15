@@ -10,11 +10,11 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
   };
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <h2>{subtitle}</h2>
+    <article>
+      <h2>{title}</h2>
+      {subtitle ? <h3>{subtitle}</h3> : null}
       <img onClick={handleClick} src={image} alt={title} />
-      <div className={styles.productos}>
+      <section className={styles.productos}>
         {showProducts &&
           product?.map((product) => {
             return (
@@ -27,7 +27,7 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
               />
             );
           })}
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };
