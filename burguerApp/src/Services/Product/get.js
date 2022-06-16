@@ -9,6 +9,6 @@ export const obtenerProductos = async () => {
   const url = import.meta.env.VITE_APP_URL;
   let product = await fetch(`${url}` + '/productos');
   let data = await product.json();
-  console.log('producto', data);
+  // console.log('producto', data);
   return data;
 };
