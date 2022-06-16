@@ -194,6 +194,7 @@ ehthumbs_vista.db
 
 #db
 db.sqlite
+
 # Dump file
 *.stackdump
 
