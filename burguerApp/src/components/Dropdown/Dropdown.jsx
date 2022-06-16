@@ -4,7 +4,6 @@ import styles from '../Dropdown/Dropdown.module.css';
 
 export const Dropdown = ({ title, subtitle, image, product }) => {
   const [showProducts, setShowProducts] = useState(false);
-
   const handleClick = () => {
     setShowProducts(!showProducts);
   };
@@ -14,8 +13,8 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
       <h1>{title}</h1>
       <h2>{subtitle}</h2>
       <img onClick={handleClick} src={image} alt={title} />
-      <div className={styles.productos}>
-        {showProducts &&
+      <div className={`${styles.productos} ${showProducts ? styles.mostrar : styles.ocultar}`}>
+        {
           product?.map((product) => {
             return (
               <Producto
