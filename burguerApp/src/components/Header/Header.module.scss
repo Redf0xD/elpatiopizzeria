@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+
+  .header_img_container {
+    width: 30%;
+  }
+  .header_title {
+    font: {
+      size: 1.5rem;
+      weight: bold;
+    }
+    color: #333;
+  }
+  .header_text {
+    font: {
+      size: 1.2rem;
+      weight: normal;
+    }
+    color: #666;
+  }
+  .header_social {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    svg {
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+  }
+}
