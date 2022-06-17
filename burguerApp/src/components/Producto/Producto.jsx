@@ -18,6 +18,7 @@ export const Producto = ({ title, image, description, price }) => {
             image={image}
             description={description}
             price={price}
+            setShowModal={setShowModal}
           />
         </Modal>
       )}

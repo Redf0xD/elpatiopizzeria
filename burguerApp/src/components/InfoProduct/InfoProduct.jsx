@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
 
-export const InfoProduct = ({ title, image, description, price }) => {
+export const InfoProduct = ({
+  title,
+  image,
+  description,
+  price,
+  setShowModal,
+}) => {
   const { addToCart } = React.useContext(GlobalContext);
   const [infoCart, setInfoCart] = useState({
     nombre: title,
     cantidad: 0,
     precio: price,
-    info: '',
   });
 
   const handleChange = (e) => {
-    setInfoCart((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setInfoCart({ ...infoCart, [e.target.name]: e.target.value });
   };
 
   const handleClick = (e) => {
@@ -23,6 +28,11 @@ export const InfoProduct = ({ title, image, description, price }) => {
     }
   };
 
+  const handleSubmit = () => {
+    addToCart(infoCart);
+    setShowModal((prev) => !prev);
+  };
+
   return (
     <>
       <div>
@@ -30,27 +40,22 @@ export const InfoProduct = ({ title, image, description, price }) => {
         <img src={image} alt={title} />
         <p>{description}</p>
         <p>${price}</p>
-        <p>Cantidad{infoCart.cantidad}</p>
+        <label>Cantidad</label>
+        <input
+          name='cantidad'
+          onChange={handleChange}
+          type='number'
+          value={infoCart.cantidad}
+        ></input>
         <button name='restar' onClick={handleClick}>
           -
         </button>
         <button name='sumar' onClick={handleClick}>
           +
         </button>
-        <label htmlFor='info'>Info adicional</label>
-        <textarea
-          onChange={handleChange}
-          name='info'
-          id='info'
-          cols='30'
-          rows='10'
-        ></textarea>
-        <p>{price * infoCart.cantidad}</p>
+        <p>${price * infoCart.cantidad}</p>
 
-        <button
-          disabled={infoCart.cantidad === 0}
-          onClick={() => addToCart(infoCart)}
-        >
+        <button disabled={infoCart.cantidad === 0} onClick={handleSubmit}>
           Agregar al pedido
         </button>
       </div>

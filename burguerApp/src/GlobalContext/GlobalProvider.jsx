@@ -2,7 +2,13 @@ import React, { useReducer } from 'react';
 import { GlobalContext } from './GlobalContext';
 import { reducer } from './GlobalReducer';
 import { obtenerCategorias, obtenerProductos } from '../Services/Product/get';
-import { GET_CATEGORIES, GET_PRODUCTS, ADD_TO_CART } from './types';
+import {
+  GET_CATEGORIES,
+  GET_PRODUCTS,
+  ADD_TO_CART,
+  DELETE_FROM_CART,
+  MODIFY_FROM_CART,
+} from './types';
 
 export const ContextProvider = ({ children }) => {
   // Estado inicial
@@ -43,6 +49,20 @@ export const ContextProvider = ({ children }) => {
     });
   };
 
+  const deleteFromCart = (nombre) => {
+    dispatch({
+      type: DELETE_FROM_CART,
+      payload: nombre,
+    });
+  };
+
+  const modifyFromCart = (nombre, accion) => {
+    dispatch({
+      type: MODIFY_FROM_CART,
+      payload: { nombre, accion },
+    });
+  };
+
   return (
     <div>
       <GlobalContext.Provider
@@ -53,6 +73,8 @@ export const ContextProvider = ({ children }) => {
           setCategories,
           setProducts,
           addToCart,
+          deleteFromCart,
+          modifyFromCart,
         }}
       >
         {children}
