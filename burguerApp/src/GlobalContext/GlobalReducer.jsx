@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_PRODUCTS } from './types';
+import { GET_CATEGORIES, GET_PRODUCTS, ADD_TO_CART } from './types';
 
 export const reducer = (state, action) => {
   const { type, payload } = action;
@@ -13,6 +13,11 @@ export const reducer = (state, action) => {
       return {
         ...state,
         products: payload,
+      };
+    case ADD_TO_CART:
+      return {
+        ...state,
+        cart: [...state.cart, payload],
       };
     default:
       return state;

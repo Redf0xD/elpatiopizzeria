@@ -10,15 +10,15 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
   };
 
   return (
-    <article className={styles.article} onClick={handleClick}>
+    <article className={styles.article}>
       <h2 className={styles.article_title}>{title}</h2>
       {subtitle ? (
         <h3 className={styles.article_subtitle}>{subtitle}</h3>
       ) : null}
-      <div className="">
-        <img src={image} alt={title} />
+      <div className=''>
+        <img onClick={handleClick} src={image} alt={title} />
       </div>
-      <section className="">
+      <section className=''>
         {showProducts &&
           product?.map((product) => {
             return (

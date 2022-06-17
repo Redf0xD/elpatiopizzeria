@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import { GlobalContext } from './GlobalContext';
 import { reducer } from './GlobalReducer';
 import { obtenerCategorias, obtenerProductos } from '../Services/Product/get';
-import { GET_CATEGORIES, GET_PRODUCTS } from './types';
+import { GET_CATEGORIES, GET_PRODUCTS, ADD_TO_CART } from './types';
 
 export const ContextProvider = ({ children }) => {
   // Estado inicial
@@ -36,6 +36,13 @@ export const ContextProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const addToCart = (order) => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: order,
+    });
+  };
+
   return (
     <div>
       <GlobalContext.Provider
@@ -45,6 +52,7 @@ export const ContextProvider = ({ children }) => {
           cart: state.cart,
           setCategories,
           setProducts,
+          addToCart,
         }}
       >
         {children}
