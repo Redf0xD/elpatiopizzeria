@@ -1,0 +1,15 @@
+@keyframes show {
+    from{
+        transform: scale(0);
+    }75%{
+        transform: scale(110%);
+    }
+    to{
+        transform: scale(100%);
+    }
+}
+
+.cartDetail{
+    transform: scale(0);
+    animation: show 0.25s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}

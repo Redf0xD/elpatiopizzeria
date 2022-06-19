@@ -9,14 +9,6 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
   };
 
   return (
-<<<<<<< HEAD
-    <div>
-      <h1>{title}</h1>
-      <h2>{subtitle}</h2>
-      <img onClick={handleClick} src={image} alt={title} />
-      <div className={`${styles.productos} ${showProducts ? styles.mostrar : styles.ocultar}`}>
-        {
-=======
     <article className={styles.article}>
       <h2 className={styles.article_title}>{title}</h2>
       {subtitle ? (
@@ -27,7 +19,6 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
       </div>
       <section className=''>
         {showProducts &&
->>>>>>> e9eefa6899d09909d848865dc97d41d1b22b42f8
           product?.map((product) => {
             return (
               <Producto

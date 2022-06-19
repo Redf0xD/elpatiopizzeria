@@ -1,56 +1,5 @@
-@keyframes mostrar {
-    from{
-        transform: translateY(-100%);
-    }to{
-        transform: translateY(0%);
-    }
-
-}
-
-@keyframes mostrar {
-    from{
-        visibility: hidden;
-        transform: translateY(-100%);
-        
-    }1%{
-
-        visibility: hidden;
-        transform: translateY(-100%);
-        
-    }to{
-        visibility: visible;
-        transform: translateY(0%);
-    }
-
-}
-@keyframes ocultar {
-    from{
-        
-        position: relative;
-        visibility: visible;
-        transform: translateY(0%);
-        
-    }99%{
-        position: absolute;
-        visibility: hidden;
-        transform: translateY(-100%);
-        
-    }to{
-        position: absolute;
-        visibility: hidden;
-        transform: translateY(-100%);
-        
-    }
-
-}
 .productos{
     background-color: bisque;
     position: relative;
     z-index: -5;
-}
-.ocultar{
-    animation: ocultar 0.2s ease-in-out both;
-}
-.mostrar{
-    animation: mostrar 0.2s ease-in-out both;
 }
