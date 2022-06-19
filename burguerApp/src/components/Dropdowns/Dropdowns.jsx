@@ -1,41 +1,22 @@
 import React from 'react';
-import styles from './Dropdowns.module.css';
-import {
-  obtenerCategorias,
-  obtenerProductos,
-} from '../../Services/Product/get';
 import { useEffect } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
 import { Dropdown } from '../Dropdown/Dropdown';
+import styles from './Dropdowns.module.scss';
 
 export const Dropdowns = () => {
   const { categories, setCategories } = React.useContext(GlobalContext);
   const { products, setProducts } = React.useContext(GlobalContext);
 
   useEffect(() => {
-    obtenerCategorias()
-      .then((data) => {
-        setCategories(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setCategories();
+    setProducts();
   }, []);
 
-  useEffect(() => {
-    obtenerProductos()
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  console.log('llega producto?', products);
+  // console.log('llega producto?', products);
 
   return (
-    <div className={styles.conteiner}>
+    <main className={styles.main}>
       {categories?.map((category) => {
         return (
           <Dropdown
@@ -49,6 +30,6 @@ export const Dropdowns = () => {
           />
         );
       })}
-    </div>
+    </main>
   );
 };
