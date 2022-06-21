@@ -5,7 +5,7 @@ import { Modal } from '../Modal/Modal';
 export const Producto = ({ title, image, description, price }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setShowModal(!showModal);
   };
 
