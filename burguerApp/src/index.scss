@@ -20,12 +20,23 @@ $color-svg-arrow: #bebebe;
   box-sizing: border-box;
 }
 
+@keyframes show {
+  from{
+    opacity: 0;
+    transform: translateY(-25%);
+  }to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  animation: show 0.5s ease-in-out forwards;
 }
 
 img {

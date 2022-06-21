@@ -5,7 +5,6 @@ import { FaChevronDown } from 'react-icons/fa';
 
 export const Dropdown = ({ title, subtitle, image, product }) => {
   const [showProducts, setShowProducts] = useState(false);
-
   const handleClick = () => {
     setShowProducts(!showProducts);
   };
