@@ -5,6 +5,8 @@ $bg-color-secondary: #fff;
 $color-border-primary: #dbdbdb;
 $color-svg-arrow: #bebebe;
 $button-color-primary: #efa113;
+$cart-color-primary: #5cd34d;
+$cart-color-secondary: #1f471a;
 $padding: 0.5rem;
 
 @mixin flex($direction, $justify: center, $align: center) {
@@ -40,6 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   animation: show 0.5s ease-in-out forwards;
+  height: 100vh;
 }
 
 img {
