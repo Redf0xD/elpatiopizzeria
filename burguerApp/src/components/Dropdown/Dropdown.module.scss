@@ -1,4 +1,5 @@
 @use '../../index.scss' as *;
+
 // flex($direction, $justify, $align)
 .article {
   @include flex(column, center, center);

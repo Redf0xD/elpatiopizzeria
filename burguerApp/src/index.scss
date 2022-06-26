@@ -4,6 +4,8 @@ $bg-color-primary: #ededed;
 $bg-color-secondary: #fff;
 $color-border-primary: #dbdbdb;
 $color-svg-arrow: #bebebe;
+$button-color-primary: #efa113;
+$padding: 0.5rem;
 
 @mixin flex($direction, $justify: center, $align: center) {
   display: flex;
@@ -19,21 +21,22 @@ $color-svg-arrow: #bebebe;
   margin: 0;
   box-sizing: border-box;
 }
-
+:root {
+  font-size: 16px;
+}
 @keyframes show {
-  from{
+  from {
     opacity: 0;
     transform: translateY(-25%);
-  }to{
+  }
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   animation: show 0.5s ease-in-out forwards;

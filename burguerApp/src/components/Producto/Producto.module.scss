@@ -1,0 +1,38 @@
+@use '../../index.scss' as *;
+.product {
+  @include flex(row, center, center);
+  gap: 1rem;
+  padding: $padding;
+  .product_info {
+    @include flex(column, center, flex-start);
+    width: 60%;
+    gap: 0.5rem;
+    .product_title {
+      text-transform: capitalize;
+      font-size: 1rem;
+    }
+    .product_description,
+    .product_price {
+      font-size: 0.8rem;
+    }
+    .product_price {
+      color: $color-text-secondary;
+    }
+    .product_button {
+      appearance: none;
+      border: none;
+      padding: 0.3rem;
+      font-weight: bold;
+      color: $color-text-primary;
+      background-color: $button-color-primary;
+      cursor: pointer;
+      border-radius: 10%;
+    }
+  }
+  .product_img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+    overflow: hidden;
+  }
+}
