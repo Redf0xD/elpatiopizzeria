@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import styles from './Modal.module.scss';
 import { FaArrowLeft } from 'react-icons/fa';
+
 export const Modal = ({ children, setShowModal }) => {
   const functionModal = () => {
     setShowModal((prev) => !prev);
