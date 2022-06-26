@@ -5,10 +5,10 @@ import { Header } from '../../components/Header/Header';
 
 export const Home = () => {
   return (
-    <div>
+    <main>
       <Header />
       <Dropdowns />
       <Cart />
-    </div>
+    </main>
   );
 };
