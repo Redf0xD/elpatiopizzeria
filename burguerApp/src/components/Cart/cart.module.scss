@@ -1,0 +1,44 @@
+@use '../../index.scss' as *;
+
+@keyframes show {
+  from {
+    transform: scale(0);
+  }
+  75% {
+    transform: scale(110%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+.cart {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: $cart-color-primary;
+  svg {
+    width: 50%;
+    height: auto;
+    color: $cart-color-secondary;
+  }
+  p {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    padding: 0.2rem;
+    background-color: $button-color-primary;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+}
+.cartDetail {
+  transform: scale(0);
+  animation: show 0.25s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
