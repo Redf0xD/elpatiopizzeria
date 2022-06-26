@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { InfoProduct } from '../InfoProduct/InfoProduct';
 import { Modal } from '../Modal/Modal';
+import styles from './Producto.module.scss';
 
 export const Producto = ({ title, image, description, price }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,8 +23,8 @@ export const Producto = ({ title, image, description, price }) => {
           />
         </Modal>
       )}
-      <div onClick={(e) => e.stopPropagation()}>
-        <h1>{title}</h1>
+      <div onClick={(e) => e.stopPropagation()} className={styles.product}>
+        <h2 className={styles.product_title}>{title}</h2>
         <img src={image} alt={title} />
         <p>{description}</p>
         <p>${price}</p>
