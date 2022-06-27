@@ -16,11 +16,13 @@
   border: none;
   cursor: pointer;
   position: fixed;
+  z-index: 1000;
   border-radius: 50%;
   width: 80px;
   height: 80px;
   bottom: 1rem;
   right: 1rem;
+  margin-left: 1rem;
   background-color: $cart-color-primary;
   svg {
     width: 50%;
