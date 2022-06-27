@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
-
+import style from './InfoProduct.module.scss';
 export const InfoProduct = ({
   title,
   image,
@@ -35,31 +35,51 @@ export const InfoProduct = ({
 
   return (
     <>
-      <section>
-        <h2>{title}</h2>
-        <img src={image} alt={title} />
-        <p>{description}</p>
-        <p>${price}</p>
-        <label>
-          Cantidad
-          <input
-            name="cantidad"
-            onChange={handleChange}
-            type="number"
-            value={infoCart.cantidad}
-          />
-        </label>
-        <button name="restar" onClick={handleClick}>
-          -
-        </button>
-        <button name="sumar" onClick={handleClick}>
-          +
-        </button>
-        <p>${price * infoCart.cantidad}</p>
+      <section className={style.InfoProduct}>
+        <div className={style.InfoProduct_img}>
+          <img src={image} alt={title} />
+        </div>
+        <div className={style.InfoProduct_info}>
+          <h2 className={style.info_title}>{title}</h2>
+          <p className={style.info_description}>{description}</p>
+          <div className={style.info_pago}>
+            <p className={style.info_price}>${price}</p>
+            <label className={style.info_cantidad}>
+              <button
+                name="restar"
+                onClick={handleClick}
+                className={style.info_button}
+              >
+                -
+              </button>
+              <input
+                name="cantidad"
+                onChange={handleChange}
+                type="number"
+                value={infoCart.cantidad}
+                className={style.cantidad_input}
+              />
+              <button
+                name="sumar"
+                onClick={handleClick}
+                className={style.info_button}
+              >
+                +
+              </button>
+            </label>
+          </div>
+          <p className={style.total_price}>
+            Total <span>${price * infoCart.cantidad}</span>
+          </p>
 
-        <button disabled={infoCart.cantidad === 0} onClick={handleSubmit}>
-          Agregar al pedido
-        </button>
+          <button
+            disabled={infoCart.cantidad === 0}
+            onClick={handleSubmit}
+            className={style.button}
+          >
+            Agregar al pedido
+          </button>
+        </div>
       </section>
     </>
   );
