@@ -35,22 +35,24 @@ export const InfoProduct = ({
 
   return (
     <>
-      <div>
-        <h1>{title}</h1>
+      <section>
+        <h2>{title}</h2>
         <img src={image} alt={title} />
         <p>{description}</p>
         <p>${price}</p>
-        <label>Cantidad</label>
-        <input
-          name='cantidad'
-          onChange={handleChange}
-          type='number'
-          value={infoCart.cantidad}
-        ></input>
-        <button name='restar' onClick={handleClick}>
+        <label>
+          Cantidad
+          <input
+            name="cantidad"
+            onChange={handleChange}
+            type="number"
+            value={infoCart.cantidad}
+          />
+        </label>
+        <button name="restar" onClick={handleClick}>
           -
         </button>
-        <button name='sumar' onClick={handleClick}>
+        <button name="sumar" onClick={handleClick}>
           +
         </button>
         <p>${price * infoCart.cantidad}</p>
@@ -58,7 +60,7 @@ export const InfoProduct = ({
         <button disabled={infoCart.cantidad === 0} onClick={handleSubmit}>
           Agregar al pedido
         </button>
-      </div>
+      </section>
     </>
   );
 };
