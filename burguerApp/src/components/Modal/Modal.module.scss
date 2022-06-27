@@ -5,9 +5,23 @@
   place-items: center;
   top: 0;
   left: 0;
+  z-index: 9999;
   width: 100%;
   height: 100vh;
   .modal_container {
-    background: white;
+    .button {
+      appearance: none;
+      background: transparent;
+      border: none;
+      position: absolute;
+      cursor: pointer;
+      left: 1rem;
+      top: 1rem;
+      svg {
+        fill: white;
+        width: 25px;
+        height: 25px;
+      }
+    }
   }
 }

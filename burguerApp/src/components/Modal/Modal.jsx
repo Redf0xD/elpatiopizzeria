@@ -11,7 +11,7 @@ export const Modal = ({ children, setShowModal }) => {
   return ReactDOM.createPortal(
     <div className={styles.modal}>
       <div className={styles.modal_container}>
-        <button onClick={functionModal}>
+        <button onClick={functionModal} className={styles.button}>
           <FaArrowLeft />
         </button>
         {children}
