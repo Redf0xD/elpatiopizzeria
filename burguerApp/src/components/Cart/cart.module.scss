@@ -38,6 +38,9 @@
     background-color: $button-color-primary;
     border-radius: 20px;
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .cartDetail {
