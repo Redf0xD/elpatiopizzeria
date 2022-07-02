@@ -4,13 +4,31 @@ import { IoIosCall } from 'react-icons/io';
 import { BsFillShareFill } from 'react-icons/bs';
 import Logoperfil from '../../Images/Logoperfil.png';
 import styles from './Header.module.scss';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  InstapaperShareButton,
+  MailruShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share';
+
+const shareData = {
+  title: 'burgerApp',
+  text: 'Compartí la app',
+  url: 'https://localhost:3030',
+};
+
+const handleClick = () => {
+  navigator.share(shareData);
+};
 
 export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header_flex_row}>
         <div className={styles.header_img_container}>
-          <img src={Logoperfil} alt="Logo de perfil" />
+          <img src={Logoperfil} alt='Logo de perfil' />
         </div>
         <div className={styles.header_flex_column}>
           <h1 className={styles.header_title}>burgerApp</h1>
@@ -18,9 +36,15 @@ export const Header = () => {
         </div>
       </div>
       <div className={styles.header_social}>
-        <FaWhatsapp />
-        <IoIosCall />
-        <BsFillShareFill />
+        <a href='https://wa.me/1149166103?text=%C2%A1Hola%20somos%20BurguerApp%2C%20cualquier%20consulta%20estamos%20a%20tu%20disposici%C3%B3n!'>
+          <FaWhatsapp />
+        </a>
+        <a href='tel:+1149166104'>
+          <IoIosCall />
+        </a>
+        <button onClick={handleClick}>
+          <BsFillShareFill />
+        </button>
       </div>
     </header>
   );
