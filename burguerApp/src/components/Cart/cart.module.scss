@@ -101,3 +101,12 @@
     }
   }
 }
+.noProduct {
+  width: 100%;
+  height: 100vh;
+  background: white;
+  min-width: 320px;
+  @include flex(row, center, center);
+  max-width: 720px;
+  padding: 2rem;
+}
