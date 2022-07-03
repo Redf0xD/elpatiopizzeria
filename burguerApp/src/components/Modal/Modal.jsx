@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import styles from './Modal.module.scss';
 import { FaArrowLeft } from 'react-icons/fa';
 
-export const Modal = ({ children, setShowModal }) => {
+export const Modal = ({ children, setShowModal, fill = 'white' }) => {
   const functionModal = () => {
     setShowModal((prev) => !prev);
   };
@@ -12,7 +12,7 @@ export const Modal = ({ children, setShowModal }) => {
     <div className={styles.modal}>
       <div className={styles.modal_container}>
         <button onClick={functionModal} className={styles.button}>
-          <FaArrowLeft />
+          <FaArrowLeft style={{ fill }} />
         </button>
         {children}
       </div>

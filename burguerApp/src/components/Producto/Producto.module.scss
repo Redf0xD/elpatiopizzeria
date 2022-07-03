@@ -27,6 +27,7 @@
       background-color: $button-color-primary;
       cursor: pointer;
       border-radius: 10%;
+      @include flex(row, center, center);
     }
   }
   .product_img {

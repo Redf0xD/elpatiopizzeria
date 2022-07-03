@@ -12,6 +12,9 @@
     fill: $color-svg-arrow;
     transition: transform 0.1s ease-in-out;
   }
+  .product {
+    width: 100%;
+  }
   .article_arrow.article_arrow_rotate {
     transform: rotate(180deg);
     transition: transform 0.1s ease-in-out;

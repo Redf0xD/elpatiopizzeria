@@ -30,7 +30,7 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
           <img src={image} alt={title} />
         </div>
       </div>
-      <section className="" onClick={(e) => e.stopPropagation()}>
+      <section className={styles.product} onClick={(e) => e.stopPropagation()}>
         {showProducts &&
           product?.map((product) => {
             return (
