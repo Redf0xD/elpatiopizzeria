@@ -274,7 +274,9 @@ export const Cart = () => {
               </div>
             </form>
           ) : (
-            <div>No haynada para mostrar</div>
+            <div className={styles.noProduct}>
+              No hay productos para mostrar
+            </div>
           )}
         </Modal>
       )}
