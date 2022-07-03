@@ -1,10 +1,9 @@
 import React from 'react';
-
+import styles from './OrderDetail.module.scss';
 export const OrderDetail = ({
   nombre,
   cantidad,
   precio,
-  id,
   deleteFromCart,
   modifyFromCart,
 }) => {
@@ -13,23 +12,34 @@ export const OrderDetail = ({
   };
 
   return (
-    <div>
-      <div key={id}>
-        <p>{nombre}</p>
-        <p>{cantidad}</p>
-        <p>{precio}</p>
-        <button onClick={() => deleteFromCart(nombre)}>Eliminar</button>
-        <button name='add' onClick={(e) => modify(nombre, e)}>
-          +
-        </button>
+    <div className={styles.orderDetail}>
+      <p>{nombre}</p>
+      <div className={styles.orderDetail_info}>
+        <div className={styles.info_cantidad}>
+          <button
+            disabled={cantidad === 1}
+            name="sub"
+            onClick={(e) => modify(nombre, e)}
+            className={styles.button}
+          >
+            -
+          </button>
+          <p>{cantidad}</p>
+          <button
+            name="add"
+            onClick={(e) => modify(nombre, e)}
+            className={styles.button}
+          >
+            +
+          </button>
+        </div>
+        <p className={styles.price}>${precio * cantidad}</p>
         <button
-          disabled={cantidad === 1}
-          name='sub'
-          onClick={(e) => modify(nombre, e)}
+          onClick={() => deleteFromCart(nombre)}
+          className={styles.button}
         >
-          -
+          X
         </button>
-        <h3>Total: {precio * cantidad}</h3>
       </div>
     </div>
   );

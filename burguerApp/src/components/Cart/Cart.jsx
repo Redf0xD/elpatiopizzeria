@@ -4,6 +4,7 @@ import { OrderDetail } from '../OrderDetail/OrderDetail';
 import { Modal } from '../Modal/Modal';
 import { FiShoppingBag } from 'react-icons/fi';
 import swal from 'sweetalert';
+import { BsCheck } from 'react-icons/bs';
 import styles from './cart.module.scss';
 export const Cart = () => {
   const { deleteFromCart, modifyFromCart, cart } =
@@ -13,9 +14,9 @@ export const Cart = () => {
     'Forma de entrega': 'delivery',
     'Dirección de entrega': '',
     'Detalle de entrega': '',
-    'Fecha de entrega': '',
+    'Fecha de entrega': 'lo antes posible',
     'Hora de entrega': '',
-    'Metodo de pago': '',
+    'Metodo de pago': 'efectivo',
     totalGeneral: 0,
   });
 
@@ -72,6 +73,7 @@ export const Cart = () => {
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
+    setShowCart((prev) => !prev);
   };
 
   const handleError = () => {
@@ -100,150 +102,180 @@ export const Cart = () => {
         </button>
       )}
       {showCart && (
-        <Modal setShowModal={setShowCart}>
-          <form
-            className={`${styles.cartDetail}`}
-            onSubmit={handleSubmit}
-          >
-            <h2>Detalles del pedido</h2>
-            {cart.map((order) => {
-              return (
-                <OrderDetail
-                  key={order.nombre}
-                  nombre={order.nombre}
-                  cantidad={order.cantidad}
-                  precio={order.precio}
-                  deleteFromCart={deleteFromCart}
-                  modifyFromCart={modifyFromCart}
-                />
-              );
-            })}
-            <h3>Formas de entrega</h3>
-            <label htmlFor=""></label>
-            <label htmlFor="delivery">Delivery</label>
-            <input
-              onChange={handleChange}
-              value="delivery"
-              type="radio"
-              id="delivery"
-              name="Forma de entrega"
-              defaultChecked
-            />
-
-            <label htmlFor="takeaway">Take Away</label>
-            <input
-              onChange={handleChange}
-              value="take away"
-              type="radio"
-              id="takeaway"
-              name="Forma de entrega"
-            />
-
-            <label>
-              Nombre de quien{' '}
-              {infoFinal['Forma de entrega'] === 'delivery'
-                ? 'recibe'
-                : 'retira'}
-              <input
-                onChange={handleChange}
-                type="text"
-                name="nombre"
-                required
-              />
-            </label>
-            {infoFinal['Forma de entrega'] === 'delivery' && (
-              <label>
-                Dirección de entrega completa
+        <Modal setShowModal={setShowCart} fill={'black'}>
+          {cart.length > 0 ? (
+            <form className={styles.cartDetail} onSubmit={handleSubmit}>
+              <h2 className={styles.cartDetail_title}>Detalles del pedido</h2>
+              {cart.map((order) => {
+                return (
+                  <OrderDetail
+                    key={order.nombre}
+                    nombre={order.nombre}
+                    cantidad={order.cantidad}
+                    precio={order.precio}
+                    deleteFromCart={deleteFromCart}
+                    modifyFromCart={modifyFromCart}
+                  />
+                );
+              })}
+              <p>Formas de entrega</p>
+              <label htmlFor="delivery" className={styles.label}>
+                Delivery
                 <input
                   onChange={handleChange}
-                  name="Dirección de entrega"
-                  type="text"
-                  required
+                  value="delivery"
+                  type="radio"
+                  id="delivery"
+                  name="Forma de entrega"
+                  defaultChecked
                 />
               </label>
-            )}
-            <h3>
-              ¿Cuando{' '}
-              {infoFinal['Forma de entrega'] === 'delivery'
-                ? 'te lo enviamos'
-                : 'lo retirás'}
-              ?
-            </h3>
-            <label htmlFor="una fecha y hora">En una fecha y hora</label>
-            <input
-              onChange={handleChange}
-              value="una fecha y hora"
-              type="radio"
-              id="una fecha y hora"
-              name="Detalle de entrega"
-            />
-            {infoFinal['Detalle de entrega'] === 'una fecha y hora' && (
-              <>
-                <label>Fecha</label>
+
+              <label htmlFor="takeaway" className={styles.label}>
+                Take Away
                 <input
                   onChange={handleChange}
-                  name="Fecha de entrega"
-                  type="date"
-                  required
-                  min={new Date().toISOString().split('T')[0]}
-                  max="2040-12-31"
+                  value="take away"
+                  type="radio"
+                  id="takeaway"
+                  name="Forma de entrega"
                 />
-                <label>Hora</label>
+              </label>
+
+              <label>
+                Nombre de quien{' '}
+                {infoFinal['Forma de entrega'] === 'delivery'
+                  ? 'recibe'
+                  : 'retira'}
                 <input
                   onChange={handleChange}
-                  name="Hora de entrega"
-                  type="time"
+                  type="text"
+                  name="nombre"
                   required
+                  className={styles.input}
                 />
-              </>
-            )}
-            <label htmlFor="Lo antes posible">Lo antes posible</label>
-            <input
-              onChange={handleChange}
-              value="lo antes posible"
-              type="radio"
-              id="loantesposible"
-              name="Detalle de entrega"
-            />
+              </label>
+              {infoFinal['Forma de entrega'] === 'delivery' && (
+                <label>
+                  Dirección de entrega completa
+                  <input
+                    onChange={handleChange}
+                    name="Dirección de entrega"
+                    type="text"
+                    required
+                    className={styles.input}
+                  />
+                </label>
+              )}
+              <p>
+                ¿Cuando{' '}
+                {infoFinal['Forma de entrega'] === 'delivery'
+                  ? 'te lo enviamos'
+                  : 'lo retirás'}
+                ?
+              </p>
+              <label htmlFor="una fecha y hora" className={styles.label}>
+                En una fecha y hora
+                <input
+                  onChange={handleChange}
+                  value="una fecha y hora"
+                  type="radio"
+                  id="una fecha y hora"
+                  name="Detalle de entrega"
+                />
+              </label>
+              {infoFinal['Detalle de entrega'] === 'una fecha y hora' && (
+                <>
+                  <label>
+                    Fecha
+                    <input
+                      onChange={handleChange}
+                      name="Fecha de entrega"
+                      type="date"
+                      required
+                      min={new Date().toISOString().split('T')[0]}
+                      max="2040-12-31"
+                    />
+                  </label>
+                  <label>
+                    Hora
+                    <input
+                      onChange={handleChange}
+                      name="Hora de entrega"
+                      type="time"
+                      required
+                    />
+                  </label>
+                </>
+              )}
+              <label htmlFor="Lo antes posible" className={styles.label}>
+                Lo antes posible
+                <input
+                  onChange={handleChange}
+                  value="lo antes posible"
+                  type="radio"
+                  id="Lo antes posible"
+                  name="Detalle de entrega"
+                  defaultChecked
+                />
+              </label>
 
-            <h3 htmlFor="Metodo de pago">Método de pago</h3>
-            <label htmlFor="efectivo">Efectivo</label>
-            <input
-              type="radio"
-              onChange={handleChange}
-              name="Metodo de pago"
-              value="efectivo"
-              id="efectivo"
-            />
-            <label htmlFor="mercado pago">Mercado Pago</label>
-            <input
-              type="radio"
-              onChange={handleChange}
-              name="Metodo de pago"
-              value="mercado pago"
-              id="mercadopago"
-            />
-            <label htmlFor="tarjeta de debito">Tarjeta de débito</label>
-            <input
-              type="radio"
-              onChange={handleChange}
-              name="Metodo de pago"
-              value="tarjeta de debito"
-              id="tarjetadedebito"
-            />
-            <label htmlFor="tarjeta de credito">Tarjeta de crédito</label>
-            <input
-              type="radio"
-              onChange={handleChange}
-              name="Metodo de pago"
-              value="tarjeta de credito"
-              id="tarjetadecredito"
-            />
-
-            <p>Total General:{infoFinal.totalGeneral}</p>
-            {/* Que quede estatico abajo (ricky) */}
-            <button>CONFIRMAR PEDIDO</button>
-          </form>
+              <p>Método de pago</p>
+              <label htmlFor="efectivo" className={styles.label}>
+                Efectivo
+                <input
+                  type="radio"
+                  onChange={handleChange}
+                  name="Metodo de pago"
+                  value="efectivo"
+                  id="efectivo"
+                  defaultChecked
+                />
+              </label>
+              <label htmlFor="mercado pago" className={styles.label}>
+                Mercado Pago
+                <input
+                  type="radio"
+                  onChange={handleChange}
+                  name="Metodo de pago"
+                  value="mercado pago"
+                  id="mercado pago"
+                />
+              </label>
+              <label htmlFor="tarjeta de debito" className={styles.label}>
+                Tarjeta de débito
+                <input
+                  type="radio"
+                  onChange={handleChange}
+                  name="Metodo de pago"
+                  value="tarjeta de debito"
+                  id="tarjeta de debito"
+                />
+              </label>
+              <label htmlFor="tarjeta de credito" className={styles.label}>
+                Tarjeta de crédito
+                <input
+                  type="radio"
+                  onChange={handleChange}
+                  name="Metodo de pago"
+                  value="tarjeta de credito"
+                  id="tarjeta de credito"
+                />
+              </label>
+              <div className={styles.confirmar}>
+                <p>
+                  Total: <span>${infoFinal.totalGeneral}</span>
+                </p>
+                {/* Que quede estatico abajo (ricky) */}
+                <button>
+                  <BsCheck />
+                  CONFIRMAR PEDIDO
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div>No haynada para mostrar</div>
+          )}
         </Modal>
       )}
     </>
