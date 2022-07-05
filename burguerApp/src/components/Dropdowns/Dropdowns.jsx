@@ -13,8 +13,6 @@ export const Dropdowns = () => {
     setProducts();
   }, []);
 
-  // console.log('llega producto?', products);
-
   return (
     <main className={styles.main}>
       {categories?.map((category) => {

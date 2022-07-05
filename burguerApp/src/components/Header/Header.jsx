@@ -4,14 +4,6 @@ import { IoIosCall } from 'react-icons/io';
 import { BsFillShareFill } from 'react-icons/bs';
 import Logoperfil from '../../Images/Logoperfil.png';
 import styles from './Header.module.scss';
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  InstapaperShareButton,
-  MailruShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-} from 'react-share';
 
 const shareData = {
   title: 'burgerApp',
