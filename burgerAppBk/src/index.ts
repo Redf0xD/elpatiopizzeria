@@ -14,7 +14,7 @@ import setearRutas from './routes.js';
 setearRutas(app);
 
 app.listen(process.env.PORT, async () => {
-  Logger.success('listening at port', process.env.PORT);
+  Logger.success('listening at port' + process.env.PORT);
   await db.sync({ force: true });
   Logger.success('db created');
 
