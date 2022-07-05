@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { GlobalContext } from '../../GlobalContext/GlobalContext';
+import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
 import Swal from 'sweetalert2';
 import styles from './FormEditCategory.module.scss';
 
@@ -35,9 +35,9 @@ export const FormEditCategory = ({ id, title, subtitle }) => {
       <label className={styles.label}>
         Título de categoría
         <input
-          type="text"
+          type='text'
           onChange={handleChange}
-          name="titulo"
+          name='titulo'
           value={categoria.titulo}
           className={styles.input}
         />
@@ -45,9 +45,9 @@ export const FormEditCategory = ({ id, title, subtitle }) => {
       <label className={styles.label}>
         Subtitulo
         <input
-          type="text"
+          type='text'
           onChange={handleChange}
-          name="subtitulo"
+          name='subtitulo'
           value={categoria.subtitulo}
           className={styles.input}
         />
@@ -57,7 +57,7 @@ export const FormEditCategory = ({ id, title, subtitle }) => {
         <p className={styles.warning}>Necesitas ingresar un título</p>
       )}
       <button className={styles.button} disabled={!categoria.titulo}>
-        Enviar
+        Aceptar
       </button>
     </form>
   );

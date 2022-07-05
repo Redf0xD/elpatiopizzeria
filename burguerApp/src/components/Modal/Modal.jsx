@@ -12,7 +12,7 @@ export const Modal = ({ children, setShowModal, fill = 'white' }) => {
     <div className={styles.modal}>
       <div className={styles.modal_container}>
         <button onClick={functionModal} className={styles.button}>
-          <FaArrowLeft style={{ fill }} />
+          <FaArrowLeft style={{ fill: 'black' }} />
         </button>
         {children}
       </div>

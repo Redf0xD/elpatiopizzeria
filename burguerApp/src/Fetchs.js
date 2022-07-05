@@ -7,7 +7,6 @@ export const subirImagen = async (imagen) => {
     body: data,
   });
   let imagenRes = await res.json();
-
   return imagenRes;
 };
 

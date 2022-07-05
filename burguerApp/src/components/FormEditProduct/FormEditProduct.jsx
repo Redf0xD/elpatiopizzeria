@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from 'react';
-import { GlobalContext } from '../../GlobalContext/GlobalContext';
+import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
 import Swal from 'sweetalert2';
 import { subirImagen } from '../../Fetchs';
 import styles from './FormEditProduct.module.scss';
@@ -50,14 +50,14 @@ export const FormEditProduct = ({
     <form
       className={styles.form}
       onSubmit={handleSubmit}
-      encType="multipart/form-data"
+      encType='multipart/form-data'
     >
       <label className={styles.label}>
         Título de producto
         <input
-          type="text"
+          type='text'
           onChange={handleChange}
-          name="titulo"
+          name='titulo'
           value={producto.titulo}
           className={styles.input}
         />
@@ -65,9 +65,9 @@ export const FormEditProduct = ({
       <label className={styles.label}>
         Descripción
         <textarea
-          type="text"
+          type='text'
           onChange={handleChange}
-          name="descripcion"
+          name='descripcion'
           value={producto.descripcion}
           className={styles.text}
         />
@@ -75,17 +75,17 @@ export const FormEditProduct = ({
       <label className={styles.label}>
         Precio
         <input
-          type="number"
+          type='number'
           onChange={handleChange}
-          name="precio"
+          name='precio'
           value={producto.precio}
           className={styles.input}
         />
       </label>
       <select
         onChange={handleChange}
-        name="categoriaId"
-        id="categoriaId"
+        name='categoriaId'
+        id='categoriaId'
         defaultValue={producto.categoriaId}
         className={styles.select}
       >
@@ -98,17 +98,17 @@ export const FormEditProduct = ({
         })}
       </select>
       <div className={styles.img}>
-        <img className="img" src={producto.imagen} alt="imagen" />
+        <img className='img' src={producto.imagen} alt='imagen' />
       </div>
       <input
-        type="file"
-        id="imagen"
-        name="imagen"
+        type='file'
+        id='imagen'
+        name='imagen'
         onChange={handleUploadImage}
         ref={inputImage}
         className={styles.inputFile}
       />
-      <button className={styles.button}>Enviar</button>
+      <button className={styles.button}>Aceptar</button>
     </form>
   );
 };

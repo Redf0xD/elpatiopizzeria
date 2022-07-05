@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiFillEdit } from 'react-icons/ai';
-import { GlobalContext } from '../../GlobalContext/GlobalContext';
+import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
 import Swal from 'sweetalert2';
 import { Modal } from '../Modal/Modal';
 import { FormEditProduct } from '../FormEditProduct/FormEditProduct';
@@ -57,7 +57,7 @@ export const ProductosCard = ({
         </div>
       </div>
       <div className={styles.img}>
-        <img src={image} alt="" />
+        <img src={image} alt='' />
       </div>
       {modal ? (
         <Modal setShowModal={setModal}>

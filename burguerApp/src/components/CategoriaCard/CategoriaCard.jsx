@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiFillEdit } from 'react-icons/ai';
-import { GlobalContext } from '../../GlobalContext/GlobalContext';
+import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
 import Swal from 'sweetalert2';
 import { Modal } from '../Modal/Modal';
 import { FormEditCategory } from '../FormEditCategory/FormEditCategory';
