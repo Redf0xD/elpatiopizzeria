@@ -4,6 +4,12 @@
   @include flex(column, center, center);
   gap: 0.8rem;
   padding: 0.8rem 0.8rem 0 0.8rem;
+  .button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: $color-text-primary;
+  }
   .header_flex_row {
     @include flex(row, center, center);
     gap: 1rem;
@@ -14,6 +20,7 @@
   }
   .header_img_container {
     width: 20%;
+    max-width: 320px;
   }
   .header_title {
     font: {

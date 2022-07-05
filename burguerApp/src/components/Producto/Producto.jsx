@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { InfoProduct } from '../InfoProduct/InfoProduct';
+import { HiPlusSm } from 'react-icons/hi';
 import { Modal } from '../Modal/Modal';
 import styles from './Producto.module.scss';
 
@@ -29,7 +30,7 @@ export const Producto = ({ title, image, description, price }) => {
           <p className={styles.product_description}>{description}</p>
           <p className={styles.product_price}>${price}</p>
           <button className={styles.product_button} onClick={handleClick}>
-            Pedir +
+            Pedir <HiPlusSm />
           </button>
         </div>
         <div className={styles.product_img}>
