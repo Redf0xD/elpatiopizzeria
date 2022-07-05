@@ -1,7 +1,7 @@
 export const subirImagen = async (imagen) => {
   let data = new FormData();
   data.append('imagen', imagen);
-  const url = import.meta.env.VITE_APP_URL;
+  const url = import.meta.env.VITE_APP_IMGSVR;
   let res = await fetch(`${url}/imagen`, {
     method: 'POST',
     body: data,
@@ -12,14 +12,14 @@ export const subirImagen = async (imagen) => {
 };
 
 export const obtenerCategorias = async () => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias`);
   let categorias = await res.json();
   return categorias;
 };
 
 export const agregarCategorias = async (categoria) => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias`, {
     method: 'POST',
     headers: {
@@ -32,7 +32,7 @@ export const agregarCategorias = async (categoria) => {
 };
 
 export const borrarCategorias = async (id) => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias/${id}`, {
     method: 'DELETE',
   });
@@ -41,7 +41,7 @@ export const borrarCategorias = async (id) => {
 };
 
 export const modificarCategorias = async (id, categoriaModificada) => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias/${id}`, {
     method: 'PUT',
     headers: {
@@ -54,7 +54,7 @@ export const modificarCategorias = async (id, categoriaModificada) => {
 };
 
 export const obtenerProductos = async () => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos`);
   let productos = await res.json();
 
@@ -62,7 +62,7 @@ export const obtenerProductos = async () => {
 };
 
 export const agregarProductos = async (producto) => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos`, {
     method: 'POST',
     headers: {
@@ -76,7 +76,7 @@ export const agregarProductos = async (producto) => {
 };
 
 export const borrarProductos = async (id) => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos/${id}`, {
     method: 'DELETE',
   });
@@ -85,7 +85,7 @@ export const borrarProductos = async (id) => {
 };
 
 export const modificarProductos = async (id, productoModificado) => {
-  const url = import.meta.env.VITE_APP_DB;
+  const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos/${id}`, {
     method: 'PUT',
     headers: {
