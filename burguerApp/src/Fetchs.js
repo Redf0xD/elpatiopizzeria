@@ -16,7 +16,6 @@ export const obtenerCategorias = async () => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias`, {
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
       'Content-Type': 'application/json',
     },
   });
@@ -69,7 +68,6 @@ export const obtenerProductos = async () => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos`, {
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
       'Content-Type': 'application/json',
     },
   });
