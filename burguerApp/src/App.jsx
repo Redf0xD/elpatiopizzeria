@@ -1,6 +1,6 @@
 import { Home } from './pages/Home/Home';
 import { Cart } from './components/Cart/Cart';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { FormPw } from './components/FormPw/FormPw';
 import { Categorias } from './components/Categorias/Categorias';
@@ -13,7 +13,6 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Home />} />
-
         <Route path='/dashboard' element={<Dashboard />}>
           <Route path='ingresar' element={<FormPw />} />
           <Route path='categorias' element={<Categorias />} />
