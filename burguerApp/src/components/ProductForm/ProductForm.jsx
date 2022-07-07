@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { subirImagen } from '../../Fetchs';
 import styles from './ProductForm.module.scss';
 
-export const ProductForm = () => {
+export const ProductForm = ({ setModal }) => {
   const { addProducts, categories } = useContext(GlobalContext);
   const [producto, setProducto] = useState({
     titulo: '',
@@ -34,6 +34,7 @@ export const ProductForm = () => {
       icon: 'success',
       confirmButtonText: 'Aceptar',
     });
+    setModal(false);
     // window.location.reload();
   };
 

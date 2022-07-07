@@ -70,7 +70,6 @@ export const agregarProductos = async (producto) => {
     body: JSON.stringify(producto),
   });
   let productoRes = await res.json();
-
   return productoRes;
 };
 

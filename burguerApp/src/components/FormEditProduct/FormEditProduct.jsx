@@ -20,7 +20,7 @@ export const FormEditProduct = ({
     imagen: image,
     categoriaId: categoryId,
   });
-  const url = import.meta.env.VITE_APP_URL;
+  const url = import.meta.env.VITE_APP_IMGSVR;
   const inputImage = useRef(null);
 
   const handleSubmit = async (e) => {

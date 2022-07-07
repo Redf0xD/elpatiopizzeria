@@ -10,7 +10,6 @@ import styles from './Productos.module.scss';
 export const Productos = () => {
   const { getProducts, setCategories, categories, products } =
     useContext(GlobalContext);
-
   const [select, setSelect] = useState('-1');
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
@@ -56,7 +55,7 @@ export const Productos = () => {
       </label>
       {modal ? (
         <Modal setShowModal={setModal}>
-          <ProductForm />
+          <ProductForm setModal={setModal} />
         </Modal>
       ) : null}
       <div className={styles.producto}>

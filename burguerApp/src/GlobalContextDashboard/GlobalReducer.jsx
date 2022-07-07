@@ -43,7 +43,7 @@ export const reducer = (state, action) => {
     case ADD_PRODUCTS:
       return {
         ...state,
-        products: payload,
+        products: [...state.products, payload],
       };
     case DELETE_PRODUCTS:
       return {
