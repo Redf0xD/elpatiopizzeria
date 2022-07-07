@@ -69,6 +69,7 @@ export const ProductosCard = ({
             price={price}
             image={image}
             categoryId={categoryId}
+            setModal={setModal}
           />
         </Modal>
       ) : null}

@@ -15,8 +15,7 @@ export const Categorias = () => {
     setModal(true);
   };
   useEffect(() => {
-    if (!window.localStorage.getItem('password'))
-      navigate('/dashboard/ingresar');
+    if (!window.localStorage.getItem('token')) navigate('/ingresar');
     setCategories();
   }, []);
 
@@ -32,13 +31,13 @@ export const Categorias = () => {
         </Modal>
       ) : null}
       <div className={styles.categoria}>
-        {categories.map((c) => {
+        {categories?.map((c) => {
           return (
             <CategoriaCard
-              id={c.id}
-              key={c.titulo}
-              title={c.titulo}
-              subtitle={c.subtitulo}
+              id={c?.id}
+              key={c?.titulo}
+              title={c?.titulo}
+              subtitle={c?.subtitulo}
             />
           );
         })}

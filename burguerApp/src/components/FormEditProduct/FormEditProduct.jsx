@@ -11,6 +11,7 @@ export const FormEditProduct = ({
   image,
   categoryId,
   id,
+  setModal,
 }) => {
   const { modifyProducts, categories } = useContext(GlobalContext);
   const [producto, setProducto] = useState({
@@ -32,6 +33,7 @@ export const FormEditProduct = ({
       icon: 'success',
       confirmButtonText: 'Aceptar',
     });
+    setModal(false);
   };
 
   const handleChange = (e) => {

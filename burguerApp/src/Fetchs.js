@@ -1,3 +1,5 @@
+// let token = localStorage.getItem('token');
+
 export const subirImagen = async (imagen) => {
   let data = new FormData();
   data.append('imagen', imagen);
@@ -12,7 +14,12 @@ export const subirImagen = async (imagen) => {
 
 export const obtenerCategorias = async () => {
   const url = import.meta.env.VITE_APP_URL;
-  let res = await fetch(`${url}/categorias`);
+  let res = await fetch(`${url}/categorias`, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+    },
+  });
   let categorias = await res.json();
   return categorias;
 };
@@ -22,6 +29,7 @@ export const agregarCategorias = async (categoria) => {
   let res = await fetch(`${url}/categorias`, {
     method: 'POST',
     headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(categoria),
@@ -34,6 +42,10 @@ export const borrarCategorias = async (id) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias/${id}`, {
     method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+    },
   });
   let categoriaBorrada = await res.json();
   return categoriaBorrada;
@@ -44,6 +56,7 @@ export const modificarCategorias = async (id, categoriaModificada) => {
   let res = await fetch(`${url}/categorias/${id}`, {
     method: 'PUT',
     headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(categoriaModificada),
@@ -54,9 +67,13 @@ export const modificarCategorias = async (id, categoriaModificada) => {
 
 export const obtenerProductos = async () => {
   const url = import.meta.env.VITE_APP_URL;
-  let res = await fetch(`${url}/productos`);
+  let res = await fetch(`${url}/productos`, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+    },
+  });
   let productos = await res.json();
-
   return productos;
 };
 
@@ -65,6 +82,7 @@ export const agregarProductos = async (producto) => {
   let res = await fetch(`${url}/productos`, {
     method: 'POST',
     headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(producto),
@@ -77,6 +95,10 @@ export const borrarProductos = async (id) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos/${id}`, {
     method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+    },
   });
   let productoBorrado = await res.json();
   return productoBorrado;
@@ -87,6 +109,7 @@ export const modificarProductos = async (id, productoModificado) => {
   let res = await fetch(`${url}/productos/${id}`, {
     method: 'PUT',
     headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(productoModificado),
@@ -105,6 +128,5 @@ export const validarPassword = async (password) => {
     body: JSON.stringify({ password }),
   });
   let loginRes = await res.json();
-
   return loginRes;
 };

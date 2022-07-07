@@ -15,8 +15,7 @@ export const Productos = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!window.localStorage.getItem('password'))
-      navigate('/dashboard/ingresar');
+    if (!window.localStorage.getItem('token')) navigate('/ingresar');
     setCategories();
     getProducts();
   }, []);
