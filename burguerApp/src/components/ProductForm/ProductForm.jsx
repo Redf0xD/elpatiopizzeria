@@ -34,7 +34,7 @@ export const ProductForm = () => {
       icon: 'success',
       confirmButtonText: 'Aceptar',
     });
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
