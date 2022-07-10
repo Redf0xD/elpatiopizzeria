@@ -14,8 +14,9 @@ export const FormPw = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const pw = await validarPassword(password);
-    if (pw.esValida) {
-      window.localStorage.setItem('password', password);
+    console.log(pw);
+    if (pw.token) {
+      window.localStorage.setItem('token', pw.token);
       navigate('/dashboard/categorias');
     } else {
       Swal.fire({

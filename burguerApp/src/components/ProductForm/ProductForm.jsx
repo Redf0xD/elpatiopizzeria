@@ -35,7 +35,8 @@ export const ProductForm = ({ setShowModal }) => {
       icon: 'success',
       confirmButtonText: 'Aceptar',
     });
-    window.location.reload();
+    setShowModal(false);
+    // window.location.reload();
   };
 
   return (

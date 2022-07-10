@@ -10,14 +10,12 @@ import styles from './Productos.module.scss';
 export const Productos = () => {
   const { getProducts, setCategories, categories, products } =
     useContext(GlobalContext);
-
   const [select, setSelect] = useState('-1');
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!window.localStorage.getItem('password'))
-      navigate('/dashboard/ingresar');
+    if (!window.localStorage.getItem('token')) navigate('/ingresar');
     setCategories();
     getProducts();
   }, []);
