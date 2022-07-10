@@ -3,8 +3,9 @@ import { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
 import Swal from 'sweetalert2';
 import styles from './FormEditCategory.module.scss';
+import { Button } from '../Button/Button';
 
-export const FormEditCategory = ({ id, title, subtitle }) => {
+export const FormEditCategory = ({ id, title, subtitle, setShowModal }) => {
   const { modifyCategories } = useContext(GlobalContext);
   const [categoria, setCategoria] = useState({
     titulo: title,
@@ -31,34 +32,37 @@ export const FormEditCategory = ({ id, title, subtitle }) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <label className={styles.label}>
-        Título de categoría
-        <input
-          type='text'
-          onChange={handleChange}
-          name='titulo'
-          value={categoria.titulo}
-          className={styles.input}
-        />
-      </label>
-      <label className={styles.label}>
-        Subtitulo
-        <input
-          type='text'
-          onChange={handleChange}
-          name='subtitulo'
-          value={categoria.subtitulo}
-          className={styles.input}
-        />
-      </label>
+    <div className={styles.form}>
+      <Button setShowModal={setShowModal} />
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.label}>
+          Título de categoría
+          <input
+            type="text"
+            onChange={handleChange}
+            name="titulo"
+            value={categoria.titulo}
+            className={styles.input}
+          />
+        </label>
+        <label className={styles.label}>
+          Subtitulo
+          <input
+            type="text"
+            onChange={handleChange}
+            name="subtitulo"
+            value={categoria.subtitulo}
+            className={styles.input}
+          />
+        </label>
 
-      {!categoria.titulo && (
-        <p className={styles.warning}>Necesitas ingresar un título</p>
-      )}
-      <button className={styles.button} disabled={!categoria.titulo}>
-        Aceptar
-      </button>
-    </form>
+        {!categoria.titulo && (
+          <p className={styles.warning}>Necesitas ingresar un título</p>
+        )}
+        <button className={styles.button} disabled={!categoria.titulo}>
+          Aceptar
+        </button>
+      </form>
+    </div>
   );
 };

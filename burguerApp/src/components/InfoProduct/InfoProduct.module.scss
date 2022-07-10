@@ -2,9 +2,10 @@
 .InfoProduct {
   width: 100%;
   height: 100vh;
-  max-width: 720px;
+  max-width: $max-width;
   background-color: white;
   overflow-y: auto;
+  position: relative;
   .InfoProduct_img {
     width: 100%;
     height: 45%;
@@ -53,7 +54,11 @@
       height: 28px;
     }
     .button {
-      padding: 0.5rem 2rem;
+      padding: 1rem 2rem;
+      width: 100%;
+      max-width: $max-width-button;
+      font-weight: bold;
+      font-size: 1.1rem;
     }
     .button:disabled {
       background: $button-color-disabled;
