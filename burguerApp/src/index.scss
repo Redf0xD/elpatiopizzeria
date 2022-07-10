@@ -10,6 +10,8 @@ $cart-color-secondary: #1f471a;
 $button-color-disabled: #eaeaea;
 $button-color-warning: #bd7272;
 $padding: 0.5rem;
+$max-width: 768px;
+$max-width-button: 480px;
 
 @mixin flex($direction, $justify: center, $align: center) {
   display: flex;
