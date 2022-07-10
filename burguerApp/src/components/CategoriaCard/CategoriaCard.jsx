@@ -32,7 +32,7 @@ export const CategoriaCard = ({ title, subtitle, id }) => {
   };
 
   const handleEditClick = () => {
-    setModal(true);
+    setModal((prev) => !prev);
   };
 
   return (
@@ -50,8 +50,13 @@ export const CategoriaCard = ({ title, subtitle, id }) => {
         <p>{subtitle}</p>
       </div>
       {modal ? (
-        <Modal setShowModal={setModal}>
-          <FormEditCategory id={id} title={title} subtitle={subtitle} />
+        <Modal>
+          <FormEditCategory
+            id={id}
+            title={title}
+            subtitle={subtitle}
+            setShowModal={setModal}
+          />
         </Modal>
       ) : null}
     </div>

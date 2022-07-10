@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
+import { Button } from '../Button/Button';
 import style from './InfoProduct.module.scss';
 export const InfoProduct = ({
   title,
@@ -36,6 +37,7 @@ export const InfoProduct = ({
   return (
     <>
       <section className={style.InfoProduct}>
+        <Button fill={'white'} setShowModal={setShowModal} />
         <div className={style.InfoProduct_img}>
           <img src={image} alt={title} />
         </div>

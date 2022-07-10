@@ -1,0 +1,14 @@
+.button {
+  appearance: none;
+  background: transparent;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  left: 1rem;
+  top: 1rem;
+  z-index: 99999;
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+}

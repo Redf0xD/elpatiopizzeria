@@ -1,4 +1,5 @@
 .productos {
+  padding: 1rem;
   margin: 50px auto 0;
   display: flex;
   flex-direction: column;
@@ -19,14 +20,16 @@
     color: #fff;
     font-weight: bold;
     border-radius: 5px;
+    font-size: 1.1rem;
   }
   .select {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     .input {
-      height: 30px;
+      height: 50px;
       cursor: pointer;
+      border: 1px solid grey;
     }
   }
 }

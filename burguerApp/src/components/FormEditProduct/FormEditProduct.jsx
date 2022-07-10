@@ -3,6 +3,7 @@ import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
 import Swal from 'sweetalert2';
 import { subirImagen } from '../../Fetchs';
 import styles from './FormEditProduct.module.scss';
+import { Button } from '../Button/Button';
 
 export const FormEditProduct = ({
   title,
@@ -11,7 +12,7 @@ export const FormEditProduct = ({
   image,
   categoryId,
   id,
-  setModal,
+  setShowModal,
 }) => {
   const { modifyProducts, categories } = useContext(GlobalContext);
   const [producto, setProducto] = useState({
@@ -33,7 +34,7 @@ export const FormEditProduct = ({
       icon: 'success',
       confirmButtonText: 'Aceptar',
     });
-    setModal(false);
+    setShowModal(false);
   };
 
   const handleChange = (e) => {
@@ -49,68 +50,73 @@ export const FormEditProduct = ({
   };
 
   return (
-    <form
-      className={styles.form}
-      onSubmit={handleSubmit}
-      encType='multipart/form-data'
-    >
-      <label className={styles.label}>
-        Título de producto
-        <input
-          type='text'
-          onChange={handleChange}
-          name='titulo'
-          value={producto.titulo}
-          className={styles.input}
-        />
-      </label>
-      <label className={styles.label}>
-        Descripción
-        <textarea
-          type='text'
-          onChange={handleChange}
-          name='descripcion'
-          value={producto.descripcion}
-          className={styles.text}
-        />
-      </label>
-      <label className={styles.label}>
-        Precio
-        <input
-          type='number'
-          onChange={handleChange}
-          name='precio'
-          value={producto.precio}
-          className={styles.input}
-        />
-      </label>
-      <select
-        onChange={handleChange}
-        name='categoriaId'
-        id='categoriaId'
-        defaultValue={producto.categoriaId}
-        className={styles.select}
+    <div className={styles.form}>
+      <Button setShowModal={setShowModal} />
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
       >
-        {categories.map((category) => {
-          return (
-            <option key={category.id} value={category.id}>
-              {category.titulo}
-            </option>
-          );
-        })}
-      </select>
-      <div className={styles.img}>
-        <img className='img' src={producto.imagen} alt='imagen' />
-      </div>
-      <input
-        type='file'
-        id='imagen'
-        name='imagen'
-        onChange={handleUploadImage}
-        ref={inputImage}
-        className={styles.inputFile}
-      />
-      <button className={styles.button}>Aceptar</button>
-    </form>
+        <label className={styles.label}>
+          Título de producto
+          <input
+            type="text"
+            onChange={handleChange}
+            name="titulo"
+            value={producto.titulo}
+            className={styles.input}
+          />
+        </label>
+        <label className={styles.label}>
+          Descripción
+          <textarea
+            type="text"
+            onChange={handleChange}
+            name="descripcion"
+            value={producto.descripcion}
+            className={styles.text}
+          />
+        </label>
+        <label className={styles.label}>
+          Precio
+          <input
+            type="number"
+            onChange={handleChange}
+            name="precio"
+            value={producto.precio}
+            className={styles.input}
+          />
+        </label>
+        <select
+          onChange={handleChange}
+          name="categoriaId"
+          id="categoriaId"
+          defaultValue={producto.categoriaId}
+          className={styles.select}
+        >
+          {categories.map((category) => {
+            return (
+              <option key={category.id} value={category.id}>
+                {category.titulo}
+              </option>
+            );
+          })}
+        </select>
+        <div className={styles.img}>
+          <img className="img" src={producto.imagen} alt="imagen" />
+        </div>
+        <label className={styles.inputFile}>
+          Selecciona un archivo...
+          <input
+            type="file"
+            id="imagen"
+            name="imagen"
+            onChange={handleUploadImage}
+            ref={inputImage}
+          />
+        </label>
+        <button className={styles.button}>Aceptar</button>
+      </form>
+    </div>
   );
 };

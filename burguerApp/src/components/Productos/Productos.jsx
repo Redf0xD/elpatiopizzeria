@@ -34,15 +34,15 @@ export const Productos = () => {
       <button className={styles.button} onClick={handleClick}>
         Agregar nuevo producto
       </button>
-      <label className={styles.select} htmlFor='categorias'>
+      <label className={styles.select} htmlFor="categorias">
         Categorias
         <select
           className={styles.input}
           onChange={handleChange}
-          name='categorias'
-          id='categorias'
+          name="categorias"
+          id="categorias"
         >
-          <option value='-1'>Todas</option>
+          <option value="-1">Todas</option>
           {categories.map((c) => {
             return (
               <option value={c.id} key={c.id}>
@@ -53,8 +53,8 @@ export const Productos = () => {
         </select>
       </label>
       {modal ? (
-        <Modal setShowModal={setModal}>
-          <ProductForm setModal={setModal} />
+        <Modal>
+          <ProductForm setShowModal={setModal} />
         </Modal>
       ) : null}
       <div className={styles.producto}>

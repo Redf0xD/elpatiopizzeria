@@ -1,22 +1,25 @@
+@use '../../index.scss' as *;
 .form {
-  min-width: 320px;
   width: 100%;
-  max-width: 768px;
+  max-width: $max-width;
   height: 100vh;
   padding: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  overflow-y: auto;
+  position: relative;
   .label {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     .input {
-      height: 30px;
+      height: 50px;
+      border: 1px solid grey;
     }
   }
   .warning {
@@ -31,6 +34,7 @@
     cursor: pointer;
     background-color: #0d6efd;
     color: white;
+    font-size: 1.1rem;
   }
   .button:disabled {
     background: #6c757d;
