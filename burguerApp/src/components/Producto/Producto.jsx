@@ -14,7 +14,7 @@ export const Producto = ({ title, image, description, price }) => {
   return (
     <>
       {showModal && (
-        <Modal setShowModal={setShowModal}>
+        <Modal>
           <InfoProduct
             title={title}
             image={image}

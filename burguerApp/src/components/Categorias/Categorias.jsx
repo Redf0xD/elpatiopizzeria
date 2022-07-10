@@ -27,8 +27,8 @@ export const Categorias = () => {
         Agregar nueva categoria
       </button>
       {modal ? (
-        <Modal setShowModal={setModal}>
-          <FormCategoria />
+        <Modal>
+          <FormCategoria setShowModal={setModal} />
         </Modal>
       ) : null}
       <div className={styles.categoria}>

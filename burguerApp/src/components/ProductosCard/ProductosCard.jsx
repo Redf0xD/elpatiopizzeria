@@ -57,10 +57,10 @@ export const ProductosCard = ({
         </div>
       </div>
       <div className={styles.img}>
-        <img src={image} alt='' />
+        <img src={image} alt="" />
       </div>
       {modal ? (
-        <Modal setShowModal={setModal}>
+        <Modal>
           <FormEditProduct
             key={id}
             id={id}
@@ -69,6 +69,7 @@ export const ProductosCard = ({
             price={price}
             image={image}
             categoryId={categoryId}
+            setShowModal={setModal}
           />
         </Modal>
       ) : null}
