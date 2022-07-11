@@ -128,3 +128,15 @@ export const validarPassword = async (password) => {
   let loginRes = await res.json();
   return loginRes;
 };
+
+export const obtenerVariantes = async (id) => {
+  const url = import.meta.env.VITE_APP_URL;
+  let res = await fetch(`${url}/variantes/` + id, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  let variantes = await res.json();
+  console.log('variantes', variantes);
+  return variantes;
+};

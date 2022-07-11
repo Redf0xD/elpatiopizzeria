@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import { GlobalContext } from './GlobalContext';
 import { reducer } from './GlobalReducer';
+import { obtenerVariantes } from '../Fetchs';
 import { obtenerCategorias, obtenerProductos } from '../Services/Product/get';
 import {
   GET_CATEGORIES,
@@ -8,6 +9,7 @@ import {
   ADD_TO_CART,
   DELETE_FROM_CART,
   MODIFY_FROM_CART,
+  GET_VARIANTS,
 } from './types';
 
 export const ContextProvider = ({ children }) => {
@@ -16,6 +18,7 @@ export const ContextProvider = ({ children }) => {
     categories: [],
     products: [],
     cart: [],
+    variants: [],
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -63,6 +66,17 @@ export const ContextProvider = ({ children }) => {
     });
   };
 
+  const getVariants = (id) => {
+    obtenerVariantes(id)
+      .then((data) => {
+        dispatch({
+          type: GET_VARIANTS,
+          payload: data,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <GlobalContext.Provider
@@ -70,11 +84,13 @@ export const ContextProvider = ({ children }) => {
           categories: state.categories,
           products: state.products,
           cart: state.cart,
+          variants: state.variants,
           setCategories,
           setProducts,
           addToCart,
           deleteFromCart,
           modifyFromCart,
+          getVariants,
         }}
       >
         {children}

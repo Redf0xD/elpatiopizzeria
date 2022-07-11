@@ -4,7 +4,7 @@ import { InfoProduct } from '../InfoProduct/InfoProduct';
 import { Modal } from '../Modal/Modal';
 import styles from './Producto.module.scss';
 
-export const Producto = ({ title, image, description, price }) => {
+export const Producto = ({ title, image, description, price, id }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
@@ -21,6 +21,7 @@ export const Producto = ({ title, image, description, price }) => {
             description={description}
             price={price}
             setShowModal={setShowModal}
+            id={id}
           />
         </Modal>
       )}

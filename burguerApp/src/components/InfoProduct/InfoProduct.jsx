@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
 import { Button } from '../Button/Button';
+import { Variantes } from '../Variantes/Variantes';
 import style from './InfoProduct.module.scss';
 export const InfoProduct = ({
   title,
@@ -8,6 +9,7 @@ export const InfoProduct = ({
   description,
   price,
   setShowModal,
+  id,
 }) => {
   const { addToCart } = React.useContext(GlobalContext);
   const [infoCart, setInfoCart] = useState({
@@ -15,6 +17,7 @@ export const InfoProduct = ({
     cantidad: 0,
     precio: price,
   });
+  const [variantes, setVariantes] = useState(0);
 
   const handleChange = (e) => {
     setInfoCart({ ...infoCart, [e.target.name]: e.target.value });
@@ -34,6 +37,10 @@ export const InfoProduct = ({
     setShowModal((prev) => !prev);
   };
 
+  const cambiarPrecioVariantes = (precio, cantidad) => {
+    setVariantes((prev) => prev + precio);
+  };
+
   return (
     <>
       <section className={style.InfoProduct}>
@@ -48,21 +55,21 @@ export const InfoProduct = ({
             <p className={style.info_price}>${price}</p>
             <label className={style.info_cantidad}>
               <button
-                name="restar"
+                name='restar'
                 onClick={handleClick}
                 className={style.info_button}
               >
                 -
               </button>
               <input
-                name="cantidad"
+                name='cantidad'
                 onChange={handleChange}
-                type="number"
+                type='number'
                 value={infoCart.cantidad}
                 className={style.cantidad_input}
               />
               <button
-                name="sumar"
+                name='sumar'
                 onClick={handleClick}
                 className={style.info_button}
               >
@@ -70,10 +77,10 @@ export const InfoProduct = ({
               </button>
             </label>
           </div>
+          <Variantes id={id} cambiarPrecioVariantes={cambiarPrecioVariantes} />
           <p className={style.total_price}>
-            Total <span>${price * infoCart.cantidad}</span>
+            Total <span>${price * infoCart.cantidad + variantes}</span>
           </p>
-
           <button
             disabled={infoCart.cantidad === 0}
             onClick={handleSubmit}

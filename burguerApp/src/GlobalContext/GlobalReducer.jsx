@@ -4,6 +4,10 @@ import {
   ADD_TO_CART,
   DELETE_FROM_CART,
   MODIFY_FROM_CART,
+  MODIFY_VARIANTS,
+  DELETE_VARIANTS,
+  ADD_VARIANTS,
+  GET_VARIANTS,
 } from './types';
 
 export const reducer = (state, action) => {
@@ -56,6 +60,13 @@ export const reducer = (state, action) => {
           return item;
         }),
       };
+
+    case GET_VARIANTS:
+      return {
+        ...state,
+        variants: payload,
+      };
+
     default:
       return state;
   }

@@ -40,6 +40,7 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
                 image={product?.imagen}
                 description={product?.descripcion}
                 price={product?.precio}
+                id={product?.id}
               />
             );
           })}
