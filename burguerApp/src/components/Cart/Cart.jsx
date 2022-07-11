@@ -18,6 +18,7 @@ export const Cart = () => {
     'Fecha de entrega': 'lo antes posible',
     'Hora de entrega': '',
     'Metodo de pago': 'efectivo',
+    'Datos adicionales': '',
     totalGeneral: 0,
   });
 
@@ -48,7 +49,7 @@ export const Cart = () => {
     e.preventDefault();
     const errores = handleError();
     if (errores) {
-      swal('Error', errores, 'error');
+      new swal('Error', errores, 'error');
       return;
     }
     var link = document.createElement('a');
@@ -56,7 +57,7 @@ export const Cart = () => {
       'Hola Luciano Burgers! Quiero hacer un pedido, este es el detalle: ';
     {
       cart.forEach((p) => {
-        info += `\n${p.nombre} x${p.cantidad} - $${p.precio} ★ `;
+        info += `\n${p.nombre} x${p.cantidad} - $${p.precio} ★ - `;
       });
     }
     for (let prop in infoFinal) {
@@ -121,26 +122,26 @@ export const Cart = () => {
                 );
               })}
               <p>Formas de entrega</p>
-              <label htmlFor="delivery" className={styles.label}>
+              <label htmlFor='delivery' className={styles.label}>
                 Delivery
                 <input
                   onChange={handleChange}
-                  value="delivery"
-                  type="radio"
-                  id="delivery"
-                  name="Forma de entrega"
+                  value='delivery'
+                  type='radio'
+                  id='delivery'
+                  name='Forma de entrega'
                   defaultChecked
                 />
               </label>
 
-              <label htmlFor="takeaway" className={styles.label}>
+              <label htmlFor='takeaway' className={styles.label}>
                 Take Away
                 <input
                   onChange={handleChange}
-                  value="take away"
-                  type="radio"
-                  id="takeaway"
-                  name="Forma de entrega"
+                  value='take away'
+                  type='radio'
+                  id='takeaway'
+                  name='Forma de entrega'
                 />
               </label>
 
@@ -151,8 +152,8 @@ export const Cart = () => {
                   : 'retira'}
                 <input
                   onChange={handleChange}
-                  type="text"
-                  name="nombre"
+                  type='text'
+                  name='nombre'
                   required
                   className={styles.input}
                 />
@@ -162,8 +163,8 @@ export const Cart = () => {
                   Dirección de entrega completa
                   <input
                     onChange={handleChange}
-                    name="Dirección de entrega"
-                    type="text"
+                    name='Dirección de entrega'
+                    type='text'
                     required
                     className={styles.input}
                   />
@@ -176,14 +177,14 @@ export const Cart = () => {
                   : 'lo retirás'}
                 ?
               </p>
-              <label htmlFor="una fecha y hora" className={styles.label}>
+              <label htmlFor='una fecha y hora' className={styles.label}>
                 En una fecha y hora
                 <input
                   onChange={handleChange}
-                  value="una fecha y hora"
-                  type="radio"
-                  id="una fecha y hora"
-                  name="Detalle de entrega"
+                  value='una fecha y hora'
+                  type='radio'
+                  id='una fecha y hora'
+                  name='Detalle de entrega'
                 />
               </label>
               {infoFinal['Detalle de entrega'] === 'una fecha y hora' && (
@@ -192,76 +193,85 @@ export const Cart = () => {
                     Fecha
                     <input
                       onChange={handleChange}
-                      name="Fecha de entrega"
-                      type="date"
+                      name='Fecha de entrega'
+                      type='date'
                       required
                       min={new Date().toISOString().split('T')[0]}
-                      max="2040-12-31"
+                      max='2040-12-31'
                     />
                   </label>
                   <label>
                     Hora
                     <input
                       onChange={handleChange}
-                      name="Hora de entrega"
-                      type="time"
+                      name='Hora de entrega'
+                      type='time'
                       required
                     />
                   </label>
                 </>
               )}
-              <label htmlFor="Lo antes posible" className={styles.label}>
+              <label htmlFor='Lo antes posible' className={styles.label}>
                 Lo antes posible
                 <input
                   onChange={handleChange}
-                  value="lo antes posible"
-                  type="radio"
-                  id="Lo antes posible"
-                  name="Detalle de entrega"
+                  value='lo antes posible'
+                  type='radio'
+                  id='Lo antes posible'
+                  name='Detalle de entrega'
                   defaultChecked
                 />
               </label>
 
               <p>Método de pago</p>
-              <label htmlFor="efectivo" className={styles.label}>
+              <label htmlFor='efectivo' className={styles.label}>
                 Efectivo
                 <input
-                  type="radio"
+                  type='radio'
                   onChange={handleChange}
-                  name="Metodo de pago"
-                  value="efectivo"
-                  id="efectivo"
+                  name='Metodo de pago'
+                  value='efectivo'
+                  id='efectivo'
                   defaultChecked
                 />
               </label>
-              <label htmlFor="mercado pago" className={styles.label}>
+              <label htmlFor='mercado pago' className={styles.label}>
                 Mercado Pago
                 <input
-                  type="radio"
+                  type='radio'
                   onChange={handleChange}
-                  name="Metodo de pago"
-                  value="mercado pago"
-                  id="mercado pago"
+                  name='Metodo de pago'
+                  value='mercado pago'
+                  id='mercado pago'
                 />
               </label>
-              <label htmlFor="tarjeta de debito" className={styles.label}>
+              <label htmlFor='tarjeta de debito' className={styles.label}>
                 Tarjeta de débito
                 <input
-                  type="radio"
+                  type='radio'
                   onChange={handleChange}
-                  name="Metodo de pago"
-                  value="tarjeta de debito"
-                  id="tarjeta de debito"
+                  name='Metodo de pago'
+                  value='tarjeta de debito'
+                  id='tarjeta de debito'
                 />
               </label>
-              <label htmlFor="tarjeta de credito" className={styles.label}>
+              <label htmlFor='tarjeta de credito' className={styles.label}>
                 Tarjeta de crédito
                 <input
-                  type="radio"
+                  type='radio'
                   onChange={handleChange}
-                  name="Metodo de pago"
-                  value="tarjeta de credito"
-                  id="tarjeta de credito"
+                  name='Metodo de pago'
+                  id='tarjeta de credito'
+                />
+              </label>
+              <label htmlFor='textarea' className={styles.label}>
+                Datos adicionales
+                <textarea
+                  onChange={handleChange}
+                  type='text'
+                  id='textarea'
+                  name='Datos adicionales'
+                  placeholder='Ej: Si querés quitar algun ingrediente'
                 />
               </label>
               <div className={styles.confirmar}>

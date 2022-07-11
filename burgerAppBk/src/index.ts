@@ -5,7 +5,7 @@ import db from './db/sequelize.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
-const { productos, categorias } = db.models;
+const { productos, categorias, variantes } = db.models;
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
@@ -13,12 +13,12 @@ app.use(cors());
 import setearRutas from './routes.js';
 setearRutas(app);
 
-app.listen(process.env.PORT, async () => {
+app.listen(process.env.PORT || 8080, async () => {
   Logger.success('listening at port' + process.env.PORT);
   await db.sync({ force: true });
   Logger.success('db created');
 
-  categorias.bulkCreate([
+  await categorias.bulkCreate([
     {
       titulo: 'Promos',
       subtitulo: 'aprovecha los mejores precios',
@@ -31,7 +31,7 @@ app.listen(process.env.PORT, async () => {
     },
   ]);
 
-  productos.bulkCreate([
+  await productos.bulkCreate([
     {
       titulo: 'Promo Enero',
       descripcion:
@@ -84,5 +84,14 @@ app.listen(process.env.PORT, async () => {
         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/que-comes-cuando-comes-nuggets-elle-1629456066.jpg',
       categoriaId: 3,
     },
+  ]);
+
+  await variantes.bulkCreate([
+    { titulo: 'Simple', precio: 150, productoId: 1 },
+    { titulo: 'Doble', precio: 250, productoId: 1 },
+    { titulo: 'Triple', precio: 350, productoId: 1 },
+    { titulo: 'Simple', precio: 150, productoId: 2 },
+    { titulo: 'Doble', precio: 250, productoId: 2 },
+    { titulo: 'Triple', precio: 350, productoId: 2 },
   ]);
 });
