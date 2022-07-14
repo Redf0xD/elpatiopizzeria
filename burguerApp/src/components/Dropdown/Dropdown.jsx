@@ -9,6 +9,8 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
     setShowProducts(!showProducts);
   };
 
+  console.log(product);
+
   return (
     <article className={styles.article}>
       <div
@@ -39,6 +41,7 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
                 title={product?.titulo}
                 image={product?.imagen}
                 description={product?.descripcion}
+                variantes={product?.variantes}
                 price={product?.precio}
                 id={product?.id}
               />

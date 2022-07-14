@@ -137,6 +137,46 @@ export const obtenerVariantes = async (id) => {
     },
   });
   let variantes = await res.json();
-  console.log('variantes', variantes);
   return variantes;
+};
+
+export const agregarVariantes = async (body) => {
+  const url = import.meta.env.VITE_APP_URL;
+  let res = await fetch(`${url}/variantes`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  let agregarVariantesRes = await res.json();
+  return agregarVariantesRes;
+};
+
+export const borrarVariantes = async (id) => {
+  const url = import.meta.env.VITE_APP_URL;
+  let res = await fetch(`${url}/variantes/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+    },
+  });
+  let varianteBorrada = await res.json();
+  return varianteBorrada;
+};
+
+export const modificarVariantes = async (id, varianteModificada) => {
+  const url = import.meta.env.VITE_APP_URL;
+  let res = await fetch(`${url}/variantes/${id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(varianteModificada),
+  });
+  let varianteModificadaRes = await res.json();
+  console.log('varianteModificada', varianteModificada);
+  return varianteModificadaRes;
 };

@@ -10,6 +10,9 @@ import {
   agregarProductos,
   borrarProductos,
   modificarProductos,
+  agregarVariantes,
+  borrarVariantes,
+  modificarVariantes,
 } from '../Fetchs';
 import {
   GET_CATEGORIES,
@@ -20,6 +23,9 @@ import {
   DELETE_PRODUCTS,
   MODIFY_PRODUCTS,
   ADD_PRODUCTS,
+  ADD_VARIANTS,
+  DELETE_VARIANTS,
+  MODIFY_VARIANTS,
 } from './types';
 
 export const ContextProvider = ({ children }) => {
@@ -119,6 +125,37 @@ export const ContextProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const addVariants = (variante) => {
+    agregarVariantes(variante).then((data) => {
+      dispatch({
+        type: ADD_VARIANTS,
+        payload: data,
+      });
+    });
+  };
+
+  const deleteVariants = (id, productId) => {
+    borrarVariantes(id)
+      .then((data) => {
+        dispatch({
+          type: DELETE_VARIANTS,
+          payload: { id, productId },
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const modifyVariants = (id, varianteModificada, productId) => {
+    modificarVariantes(id, varianteModificada, productId)
+      .then((data) => {
+        dispatch({
+          type: MODIFY_VARIANTS,
+          payload: { data, id, productId },
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <GlobalContext.Provider
@@ -134,6 +171,9 @@ export const ContextProvider = ({ children }) => {
           addProducts,
           deleteProducts,
           modifyProducts,
+          addVariants,
+          deleteVariants,
+          modifyVariants,
         }}
       >
         {children}

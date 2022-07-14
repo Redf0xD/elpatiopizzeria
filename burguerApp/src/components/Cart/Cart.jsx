@@ -29,6 +29,7 @@ export const Cart = () => {
       return total + order.precio * order.cantidad;
     }, 0);
     setInfoFinal((prev) => ({ ...prev, totalGeneral }));
+    console.log('totalGeneral', totalGeneral);
   }, [cart]);
 
   const handleChange = (e) => {
@@ -81,7 +82,7 @@ export const Cart = () => {
   const handleError = () => {
     if (infoFinal['Forma de entrega'] === '') {
       return 'Por favor, seleccione una forma de entrega';
-    } else if (infoFinal['Detalle de entrega'] === '') {
+    } else if (infoFinal['Fecha de entrega'] === '') {
       return 'Por favor, ingrese cuando se lo enviamos';
     } else if (infoFinal['Metodo de pago'] === '') {
       return 'Por favor, seleccione un metodo de pago';
@@ -217,7 +218,7 @@ export const Cart = () => {
                   onChange={handleChange}
                   value='lo antes posible'
                   type='radio'
-                  id='Lo antes posible'
+                  id='lo antes posible'
                   name='Detalle de entrega'
                   defaultChecked
                 />
@@ -258,6 +259,7 @@ export const Cart = () => {
               <label htmlFor='tarjeta de credito' className={styles.label}>
                 Tarjeta de crédito
                 <input
+                  value='tarjeta de credito'
                   type='radio'
                   onChange={handleChange}
                   name='Metodo de pago'

@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 
-export const ContadorVariantes = ({
-  titulo,
-  precio,
-  cambiarPrecioVariantes,
-}) => {
+export const ContadorVariantes = ({ titulo, precio, handleVariants, id }) => {
   const [cantidad, setCantidad] = useState(0);
 
   const handleClick = (e) => {
     e.stopPropagation();
     if (e.target.name === 'sumar') {
-      cambiarPrecioVariantes(precio);
+      handleVariants(id, 1);
       setCantidad((prev) => {
         return prev + 1;
       });
     } else if (cantidad > 0) {
-      cambiarPrecioVariantes(-precio);
+      handleVariants(id, -1);
       setCantidad((prev) => {
         return prev - 1;
       });

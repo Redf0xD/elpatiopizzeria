@@ -1,11 +1,14 @@
 import { useContext, useState } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { AiFillEdit } from 'react-icons/ai';
+import { AiFillEdit, AiFillEye } from 'react-icons/ai';
 import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
 import Swal from 'sweetalert2';
 import { Modal } from '../Modal/Modal';
 import { FormEditProduct } from '../FormEditProduct/FormEditProduct';
 import styles from './ProductosCard.module.scss';
+import { IoIosAddCircleOutline } from 'react-icons/io';
+import { ListaVariantes } from '../ListaVariantes/ListaVariantes';
+import { FormAddVariante } from '../FormAddVariante/FormAddVariante';
 
 export const ProductosCard = ({
   id,
@@ -14,9 +17,12 @@ export const ProductosCard = ({
   image,
   price,
   categoryId,
+  variantes,
 }) => {
   const { deleteProducts } = useContext(GlobalContext);
   const [modal, setModal] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [modal3, setModal3] = useState(false);
 
   const handleClick = () => {
     Swal.fire({
@@ -55,9 +61,23 @@ export const ProductosCard = ({
             <AiFillEdit />
           </button>
         </div>
+        <div>
+          <button onClick={() => setModal3(true)}>
+            <IoIosAddCircleOutline />
+          </button>
+
+          {modal3 ? (
+            <Modal>
+              <FormAddVariante id={id} setModal3={setModal3} />
+            </Modal>
+          ) : null}
+          <button onClick={() => setModal2(true)}>
+            <AiFillEye />
+          </button>
+        </div>
       </div>
       <div className={styles.img}>
-        <img src={image} alt="" />
+        <img src={image} alt='' />
       </div>
       {modal ? (
         <Modal>
@@ -70,6 +90,15 @@ export const ProductosCard = ({
             image={image}
             categoryId={categoryId}
             setShowModal={setModal}
+          />
+        </Modal>
+      ) : null}
+      {modal2 ? (
+        <Modal>
+          <ListaVariantes
+            variantes={variantes}
+            setModal2={setModal2}
+            productId={id}
           />
         </Modal>
       ) : null}

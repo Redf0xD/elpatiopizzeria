@@ -1,0 +1,60 @@
+import React, { useContext, useState } from 'react';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
+import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
+import swal from 'sweetalert2';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { EditVariant } from '../EditVariant/EditVariant';
+import { Modal } from '../Modal/Modal';
+
+export const VarianteCard = ({ id, titulo, precio, productId }) => {
+  const { deleteVariants } = useContext(GlobalContext);
+  const [modal, setModal] = useState(false);
+
+  const handleClick = () => {
+    swal
+      .fire({
+        title: '¿Estas seguro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+      })
+      .then((result) => {
+        if (result.value) {
+          console.log(id, productId);
+          deleteVariants(id, productId);
+        }
+      })
+      .catch(() => {});
+  };
+
+  const handleEditClick = () => {
+    setModal(true);
+  };
+
+  return (
+    <div>
+      <p>{titulo}</p>
+      <p>$ {precio}</p>
+      <button onClick={handleClick}>
+        <RiDeleteBin2Fill />
+      </button>
+      <button onClick={handleEditClick}>
+        <AiOutlineEdit />
+      </button>
+      {modal ? (
+        <Modal>
+          <EditVariant
+            setModal={setModal}
+            titulo={titulo}
+            precio={precio}
+            id={id}
+            productId={productId}
+          />
+        </Modal>
+      ) : null}
+    </div>
+  );
+};
