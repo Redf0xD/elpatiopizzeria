@@ -5,9 +5,11 @@ import Swal from 'sweetalert2';
 import { subirImagen } from '../../Fetchs';
 import styles from './ProductForm.module.scss';
 import { Button } from '../Button/Button';
+import { Loading } from '../Loading/Loading';
 
 export const ProductForm = ({ setShowModal }) => {
   const { addProducts, categories } = useContext(GlobalContext);
+  const [loading, setLoading] = useState(false);
   const [producto, setProducto] = useState({
     titulo: '',
     descripcion: '',
@@ -27,8 +29,10 @@ export const ProductForm = ({ setShowModal }) => {
   const handleSubmit = async (e) => {
     const url = import.meta.env.VITE_APP_IMGSVR;
     e.preventDefault();
+    setLoading(true);
     const imagen = await subirImagen(inputImage.current.files[0]);
     await addProducts({ ...producto, imagen: url + imagen.url });
+    setLoading(false);
     Swal.fire({
       title: 'Exitoso!',
       text: 'Haz click para continuar',
@@ -41,18 +45,19 @@ export const ProductForm = ({ setShowModal }) => {
 
   return (
     <div className={styles.form}>
+      {loading ? <Loading /> : null}
       <Button setShowModal={setShowModal} />
       <form
         className={styles.form}
         onSubmit={handleSubmit}
-        encType="multipart/form-data"
+        encType='multipart/form-data'
       >
         <label className={styles.label}>
           Título de producto
           <input
-            type="text"
+            type='text'
             onChange={handleChange}
-            name="titulo"
+            name='titulo'
             value={producto.titulo}
             className={styles.input}
           />
@@ -60,9 +65,9 @@ export const ProductForm = ({ setShowModal }) => {
         <label className={styles.label}>
           Descripción
           <input
-            type="text"
+            type='text'
             onChange={handleChange}
-            name="descripcion"
+            name='descripcion'
             value={producto.descripcion}
             className={styles.input}
           />
@@ -70,9 +75,9 @@ export const ProductForm = ({ setShowModal }) => {
         <label className={styles.label}>
           Precio
           <input
-            type="number"
+            type='number'
             onChange={handleChange}
-            name="precio"
+            name='precio'
             value={producto.precio}
             className={styles.input}
           />
@@ -80,10 +85,10 @@ export const ProductForm = ({ setShowModal }) => {
         <select
           className={styles.select}
           onChange={handleChange}
-          name="categoriaId"
-          id="categorias"
+          name='categoriaId'
+          id='categorias'
         >
-          <option value="-1">Todas</option>
+          <option value='-1'>Todas</option>
           {categories.map((c) => {
             return (
               <option value={c.id} key={c.id}>
@@ -96,8 +101,8 @@ export const ProductForm = ({ setShowModal }) => {
           Imagen
           <input
             ref={inputImage}
-            type="file"
-            name="imagen"
+            type='file'
+            name='imagen'
             onChange={handleChange}
             value={producto.imagen}
             className={styles.inputFile}

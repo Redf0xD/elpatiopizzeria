@@ -27,6 +27,7 @@ export const EditVariant = ({ titulo, precio, productId, id, setModal }) => {
       <form onSubmit={handleSubmit}>
         <label>Titulo de la variante</label>
         <input
+          required
           type='text'
           name='titulo'
           value={variante.titulo}
@@ -34,12 +35,13 @@ export const EditVariant = ({ titulo, precio, productId, id, setModal }) => {
         />
         <label>Precio</label>
         <input
+          required
           type='number'
           name='precio'
           value={variante.precio}
           onChange={handleChange}
         />
-        <button>Editar variante</button>
+        <button disabled={variante.precio <= 0}>Editar variante</button>
       </form>
     </div>
   );

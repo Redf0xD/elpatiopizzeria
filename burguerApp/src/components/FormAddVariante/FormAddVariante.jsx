@@ -28,10 +28,10 @@ export const FormAddVariante = ({ id, setModal3 }) => {
       <button onClick={() => setModal3(false)}>X</button>
       <form onSubmit={handleSubmit}>
         <label>Titulo de la variante</label>
-        <input type='text' name='titulo' onChange={handleChange} />
+        <input type='text' name='titulo' onChange={handleChange} required />
         <label>Precio</label>
-        <input type='number' name='precio' onChange={handleChange} />
-        <button>Agregar variante</button>
+        <input type='number' name='precio' onChange={handleChange} required />
+        <button disabled={variante.precio <= 0}>Agregar variante</button>
       </form>
     </div>
   );

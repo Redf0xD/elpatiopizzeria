@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import { FormPw } from './components/FormPw/FormPw';
 import { Categorias } from './components/Categorias/Categorias';
 import { Productos } from './components/Productos/Productos';
+import { ProductFilter } from './components/ProductFilter/ProductFilter';
 
 // import QRCode from 'react-qr-code';
 
