@@ -1,0 +1,26 @@
+@use '../../index.scss' as *;
+.div {
+  background-color: $bg-color-primary;
+  width: 100%;
+  max-width: $max-width;
+  padding: 2rem;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 0;
+  .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    min-height: min-content;
+    width: 50%;
+    margin: 0 auto;
+    .item {
+      display: flex;
+      justify-content: space-between;
+      :first-child {
+        color: $color-text-primary;
+      }
+    }
+  }
+}
