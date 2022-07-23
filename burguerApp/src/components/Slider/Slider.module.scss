@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  margin: 1%;
+  .slider {
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
+    max-width: 720px;
+    div {
+      div {
+        display: block;
+        height: 0;
+        padding: 56.25% 0 0 0;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        img {
+          top: 0;
+        }
+      }
+    }
+  }
+}

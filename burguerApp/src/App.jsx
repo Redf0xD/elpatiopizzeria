@@ -1,6 +1,6 @@
 import { Home } from './pages/Home/Home';
 import { Cart } from './components/Cart/Cart';
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { FormPw } from './components/FormPw/FormPw';
 import { Categorias } from './components/Categorias/Categorias';

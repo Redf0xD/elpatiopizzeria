@@ -123,6 +123,8 @@ export const InfoProduct = ({
                 titulo={v.titulo}
                 precio={v.precio}
                 handleVariants={handleVariants}
+                infoCart={infoCart}
+                handleChange={handleChange}
               />
             );
           })}

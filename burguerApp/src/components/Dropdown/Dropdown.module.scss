@@ -2,7 +2,8 @@
 
 // flex($direction, $justify, $align)
 .article {
-  @include flex(column, center, center);
+  display: grid;
+  grid-template-columns: 100%;
   text-transform: uppercase;
   .article_arrow {
     position: absolute;
@@ -14,6 +15,13 @@
   }
   .product {
     width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+  }
+  @media (min-width: 768px) {
+    .product {
+      grid-template-columns: 50% 50%;
+    }
   }
   .article_arrow.article_arrow_rotate {
     transform: rotate(180deg);

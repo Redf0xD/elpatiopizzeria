@@ -1,6 +1,6 @@
-import React, { useReducer } from 'react';
-import { GlobalContext } from './GlobalContext';
-import { reducer } from './GlobalReducer';
+import React, { useReducer } from 'react'
+import { GlobalContext } from './GlobalContext'
+import { reducer } from './GlobalReducer'
 import {
   obtenerCategorias,
   agregarCategorias,
@@ -12,8 +12,8 @@ import {
   modificarProductos,
   agregarVariantes,
   borrarVariantes,
-  modificarVariantes,
-} from '../Fetchs';
+  modificarVariantes
+} from '../Fetchs'
 import {
   GET_CATEGORIES,
   DELETE_CATEGORIES,
@@ -25,136 +25,136 @@ import {
   ADD_PRODUCTS,
   ADD_VARIANTS,
   DELETE_VARIANTS,
-  MODIFY_VARIANTS,
-} from './types';
+  MODIFY_VARIANTS
+} from './types'
 
 export const ContextProvider = ({ children }) => {
   // Estado inicial
   const initialState = {
     categories: [],
-    products: [],
-  };
-  const [state, dispatch] = useReducer(reducer, initialState);
+    products: []
+  }
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   ///funciones que modifican estados
   const setCategories = () => {
     obtenerCategorias()
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: GET_CATEGORIES,
-          payload: data,
-        });
+          payload: data
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
-  const addCategories = (categoria) => {
+  const addCategories = categoria => {
     agregarCategorias(categoria)
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: ADD_CATEGORIES,
-          payload: data,
-        });
+          payload: data
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
-  const deleteCategories = (id) => {
+  const deleteCategories = id => {
     borrarCategorias(id)
-      .then((data) => {
+      .then(() => {
         dispatch({
           type: DELETE_CATEGORIES,
-          payload: id,
-        });
+          payload: id
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const modifyCategories = (id, categoriaModificada) => {
     modificarCategorias(id, categoriaModificada)
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: MODIFY_CATEGORIES,
-          payload: data,
-        });
+          payload: data
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const getProducts = () => {
     obtenerProductos()
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: GET_PRODUCTS,
-          payload: data,
-        });
+          payload: data
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
-  const addProducts = (producto) => {
+  const addProducts = producto => {
     agregarProductos(producto)
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: ADD_PRODUCTS,
-          payload: data,
-        });
+          payload: data
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
-  const deleteProducts = (id) => {
+  const deleteProducts = id => {
     borrarProductos(id)
-      .then((data) => {
+      .then(() => {
         dispatch({
           type: DELETE_PRODUCTS,
-          payload: id,
-        });
+          payload: id
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const modifyProducts = (id, productoModificado) => {
     modificarProductos(id, productoModificado)
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: MODIFY_PRODUCTS,
-          payload: data,
-        });
+          payload: data
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
-  const addVariants = (variante) => {
-    agregarVariantes(variante).then((data) => {
+  const addVariants = variante => {
+    agregarVariantes(variante).then(data => {
       dispatch({
         type: ADD_VARIANTS,
-        payload: data,
-      });
-    });
-  };
+        payload: data
+      })
+    })
+  }
 
   const deleteVariants = (id, productId) => {
     borrarVariantes(id)
-      .then((data) => {
+      .then(() => {
         dispatch({
           type: DELETE_VARIANTS,
-          payload: { id, productId },
-        });
+          payload: { id, productId }
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const modifyVariants = (id, varianteModificada, productId) => {
     modificarVariantes(id, varianteModificada, productId)
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: MODIFY_VARIANTS,
-          payload: { data, id, productId },
-        });
+          payload: { data, id, productId }
+        })
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   return (
     <div>
@@ -173,11 +173,11 @@ export const ContextProvider = ({ children }) => {
           modifyProducts,
           addVariants,
           deleteVariants,
-          modifyVariants,
+          modifyVariants
         }}
       >
         {children}
       </GlobalContext.Provider>
     </div>
-  );
-};
+  )
+}

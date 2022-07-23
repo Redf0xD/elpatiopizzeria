@@ -1,48 +1,54 @@
-import React, { useState, useContext } from 'react';
-import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
+import React, { useState, useContext } from 'react'
+import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext'
+import { Button } from '../Button/Button'
+import styles from './EditVariant.module.scss'
 
 export const EditVariant = ({ titulo, precio, productId, id, setModal }) => {
-  const { modifyVariants } = useContext(GlobalContext);
+  const { modifyVariants } = useContext(GlobalContext)
   const [variante, setVariante] = useState({
     titulo: titulo,
-    precio: precio,
-  });
+    precio: precio
+  })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    modifyVariants(id, variante, productId);
-    setModal(false);
-  };
+  const handleSubmit = e => {
+    e.preventDefault()
+    modifyVariants(id, variante, productId)
+    setModal(false)
+  }
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setVariante({
       ...variante,
-      [e.target.name]: e.target.value,
-    });
-  };
+      [e.target.name]: e.target.value
+    })
+  }
 
   return (
-    <div>
-      <button onClick={() => setModal(false)}>X</button>
-      <form onSubmit={handleSubmit}>
-        <label>Titulo de la variante</label>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <Button setShowModal={setModal} />
+      <label className={styles.label}>
+        Titulo de la variante
         <input
-          required
-          type='text'
-          name='titulo'
-          value={variante.titulo}
+          type="text"
+          name="titulo"
+          className={styles.input}
           onChange={handleChange}
+          required
         />
-        <label>Precio</label>
+      </label>
+      <label className={styles.label}>
+        Precio
         <input
-          required
-          type='number'
-          name='precio'
-          value={variante.precio}
+          type="number"
+          name="precio"
+          className={styles.input}
           onChange={handleChange}
+          required
         />
-        <button disabled={variante.precio <= 0}>Editar variante</button>
-      </form>
-    </div>
-  );
-};
+      </label>
+      <button className={styles.button} disabled={variante.precio <= 0}>
+        Agregar variante
+      </button>
+    </form>
+  )
+}

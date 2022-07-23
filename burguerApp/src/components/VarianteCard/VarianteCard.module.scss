@@ -1,0 +1,32 @@
+@use '../../index.scss' as *;
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  border-bottom: 1px dashed $color-border-primary;
+  border-top: 1px dashed $color-border-primary;
+  .editDelete {
+    display: flex;
+    gap: 1rem;
+    .editar,
+    .eliminar {
+      padding: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10%;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .editar {
+      background: #198754;
+    }
+    .eliminar {
+      background: #dc3545;
+    }
+  }
+}
