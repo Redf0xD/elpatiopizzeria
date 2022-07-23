@@ -1,17 +1,16 @@
-import React from 'react';
-import { useEffect } from 'react';
-import styles from '../ListaVariantes/ListaVariantes.module.css';
-import { VarianteCard } from '../VarianteCard/VarianteCard';
+import React from 'react'
+import { Button } from '../Button/Button'
+import styles from '../ListaVariantes/ListaVariantes.module.scss'
+import { VarianteCard } from '../VarianteCard/VarianteCard'
 
 export const ListaVariantes = ({ variantes, setModal2, productId }) => {
   return (
-    <div>
-      <button onClick={() => setModal2(false)}>X</button>
-
+    <div className={styles.container}>
+      <Button setShowModal={setModal2} />
       {variantes.length === 0 ? (
-        <p>No hay variantes</p>
+        <p className={styles.noHay}>No hay variantes</p>
       ) : (
-        variantes.map((v) => {
+        variantes.map(v => {
           return (
             <VarianteCard
               key={v.id}
@@ -20,9 +19,9 @@ export const ListaVariantes = ({ variantes, setModal2, productId }) => {
               precio={v.precio}
               productId={productId}
             />
-          );
+          )
         })
       )}
     </div>
-  );
-};
+  )
+}

@@ -4,16 +4,17 @@
   width: 100%;
   max-width: $max-width;
   padding: 2rem;
-  border-radius: 5px;
+  border-radius: 10px 10px 0 0;
   position: fixed;
   bottom: 0;
+  animation: height 0.3s linear;
   .list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
     min-height: min-content;
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
     .item {
       display: flex;
@@ -22,5 +23,15 @@
         color: $color-text-primary;
       }
     }
+  }
+}
+@keyframes height {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: auto;
   }
 }

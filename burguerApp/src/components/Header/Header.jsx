@@ -107,11 +107,11 @@ export const Header = () => {
           <h1 className={styles.header_title}>burgerApp</h1>
           <p className={styles.header_text}>¡Las mejores de la zona!</p>
         </div>
-        <div className={styles.abiertocerrado}>
-          <p>
+        <div className={styles.icons}>
+          <p className={styles.delivery}>
             Delivery <MdDeliveryDining />
           </p>
-          <button onClick={handleHourClick}>
+          <button className={styles.horario} onClick={handleHourClick}>
             {horarios} <BiTimeFive />
           </button>
           {modal && (

@@ -1,14 +1,14 @@
-import { useContext, useState } from 'react';
-import { RiDeleteBinLine } from 'react-icons/ri';
-import { AiFillEdit, AiFillEye } from 'react-icons/ai';
-import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
-import Swal from 'sweetalert2';
-import { Modal } from '../Modal/Modal';
-import { FormEditProduct } from '../FormEditProduct/FormEditProduct';
-import styles from './ProductosCard.module.scss';
-import { IoIosAddCircleOutline } from 'react-icons/io';
-import { ListaVariantes } from '../ListaVariantes/ListaVariantes';
-import { FormAddVariante } from '../FormAddVariante/FormAddVariante';
+import { useContext, useState } from 'react'
+import { RiDeleteBinLine } from 'react-icons/ri'
+import { AiFillEdit, AiFillEye } from 'react-icons/ai'
+import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext'
+import Swal from 'sweetalert2'
+import { Modal } from '../Modal/Modal'
+import { FormEditProduct } from '../FormEditProduct/FormEditProduct'
+import styles from './ProductosCard.module.scss'
+import { BsPlusLg } from 'react-icons/bs'
+import { ListaVariantes } from '../ListaVariantes/ListaVariantes'
+import { FormAddVariante } from '../FormAddVariante/FormAddVariante'
 
 export const ProductosCard = ({
   id,
@@ -17,12 +17,12 @@ export const ProductosCard = ({
   image,
   price,
   categoryId,
-  variantes,
+  variantes
 }) => {
-  const { deleteProducts } = useContext(GlobalContext);
-  const [modal, setModal] = useState(false);
-  const [modal2, setModal2] = useState(false);
-  const [modal3, setModal3] = useState(false);
+  const { deleteProducts } = useContext(GlobalContext)
+  const [modal, setModal] = useState(false)
+  const [modal2, setModal2] = useState(false)
+  const [modal3, setModal3] = useState(false)
 
   const handleClick = () => {
     Swal.fire({
@@ -33,19 +33,19 @@ export const ProductosCard = ({
       customClass: {
         actions: 'my-actions',
         confirmButton: 'order-2',
-        denyButton: 'order-3',
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteProducts(id);
-        Swal.fire('Exitoso', '', 'success');
+        denyButton: 'order-3'
       }
-    });
-  };
+    }).then(result => {
+      if (result.isConfirmed) {
+        deleteProducts(id)
+        Swal.fire('Exitoso', '', 'success')
+      }
+    })
+  }
 
   const handleEditClick = () => {
-    setModal(true);
-  };
+    setModal(true)
+  }
 
   return (
     <section className={styles.producto}>
@@ -60,48 +60,45 @@ export const ProductosCard = ({
           <button onClick={handleEditClick} className={styles.editar}>
             <AiFillEdit />
           </button>
-        </div>
-        <div>
-          <button onClick={() => setModal3(true)}>
-            <IoIosAddCircleOutline />
+          {modal ? (
+            <Modal>
+              <FormEditProduct
+                key={id}
+                id={id}
+                title={title}
+                description={description}
+                price={price}
+                image={image}
+                categoryId={categoryId}
+                setShowModal={setModal}
+              />
+            </Modal>
+          ) : null}
+          <button className={styles.añadir} onClick={() => setModal3(true)}>
+            <BsPlusLg />
           </button>
-
           {modal3 ? (
             <Modal>
               <FormAddVariante id={id} setModal3={setModal3} />
             </Modal>
           ) : null}
-          <button onClick={() => setModal2(true)}>
+          <button className={styles.ver} onClick={() => setModal2(true)}>
             <AiFillEye />
           </button>
+          {modal2 ? (
+            <Modal>
+              <ListaVariantes
+                variantes={variantes}
+                setModal2={setModal2}
+                productId={id}
+              />
+            </Modal>
+          ) : null}
         </div>
       </div>
       <div className={styles.img}>
-        <img src={image} alt='' />
+        <img src={image} alt="" />
       </div>
-      {modal ? (
-        <Modal>
-          <FormEditProduct
-            key={id}
-            id={id}
-            title={title}
-            description={description}
-            price={price}
-            image={image}
-            categoryId={categoryId}
-            setShowModal={setModal}
-          />
-        </Modal>
-      ) : null}
-      {modal2 ? (
-        <Modal>
-          <ListaVariantes
-            variantes={variantes}
-            setModal2={setModal2}
-            productId={id}
-          />
-        </Modal>
-      ) : null}
     </section>
-  );
-};
+  )
+}

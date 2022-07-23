@@ -265,7 +265,7 @@ export const Cart = () => {
                   id='tarjeta de credito'
                 />
               </label>
-              <label htmlFor='textarea' className={styles.label}>
+              <label htmlFor='textarea' className={styles.labelArea}>
                 Datos adicionales
                 <textarea
                   onChange={handleChange}
@@ -273,6 +273,7 @@ export const Cart = () => {
                   id='textarea'
                   name='Datos adicionales'
                   placeholder='Ej: Si querés quitar algun ingrediente'
+                  className={styles.textarea}
                 />
               </label>
               <div className={styles.confirmar}>
