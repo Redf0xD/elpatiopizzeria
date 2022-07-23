@@ -115,7 +115,7 @@ export const Header = () => {
             {horarios} <BiTimeFive />
           </button>
           {modal && (
-            <Modal>
+            <Modal setModal={setModal}>
               <Horarios setModal={setModal} />
             </Modal>
           )}
