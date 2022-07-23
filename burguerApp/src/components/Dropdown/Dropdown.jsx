@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
-import { Producto } from '../Producto/Producto';
-import styles from './Dropdown.module.scss';
-import { FaChevronDown } from 'react-icons/fa';
+import React, { useState } from 'react'
+import { Producto } from '../Producto/Producto'
+import styles from './Dropdown.module.scss'
+import { FaChevronDown } from 'react-icons/fa'
+import { useWidth } from '../../hooks/useWidth'
 
 export const Dropdown = ({ title, subtitle, image, product }) => {
-  const [showProducts, setShowProducts] = useState(false);
+  const { width } = useWidth()
+  const [showProducts, setShowProducts] = useState(() => {
+    console.log(width)
+    return width > 768
+  })
   const handleClick = () => {
-    setShowProducts(!showProducts);
-  };
+    setShowProducts(!showProducts)
+  }
 
   return (
     <article className={styles.article}>
@@ -30,9 +35,9 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
           <img src={image} alt={title} />
         </div>
       </div>
-      <section className={styles.product} onClick={(e) => e.stopPropagation()}>
+      <section className={styles.product} onClick={e => e.stopPropagation()}>
         {showProducts &&
-          product?.map((product) => {
+          product?.map(product => {
             return (
               <Producto
                 key={product?.id}
@@ -43,9 +48,9 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
                 price={product?.precio}
                 id={product?.id}
               />
-            );
+            )
           })}
       </section>
     </article>
-  );
-};
+  )
+}
