@@ -14,7 +14,6 @@ export const FormPw = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const pw = await validarPassword(password);
-    console.log(pw);
     if (pw.token) {
       window.localStorage.setItem('token', pw.token);
       navigate('/dashboard/categorias');

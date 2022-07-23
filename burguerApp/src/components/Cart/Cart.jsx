@@ -29,7 +29,6 @@ export const Cart = () => {
       return total + order.precio * order.cantidad;
     }, 0);
     setInfoFinal((prev) => ({ ...prev, totalGeneral }));
-    console.log('totalGeneral', totalGeneral);
   }, [cart]);
 
   const handleChange = (e) => {

@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
 import { ContadorVariantes } from '../ContadorVariantes/ContadorVariantes';
 
 export const Variantes = ({ id, cambiarPrecioVariantes }) => {
   const { getVariants, variants } = useContext(GlobalContext);
-
   useEffect(() => {
     getVariants(id);
   }, []);
-  console.log('variantesenuseeffect', variants);
   return (
     <div>
       {variants.map((v) => {

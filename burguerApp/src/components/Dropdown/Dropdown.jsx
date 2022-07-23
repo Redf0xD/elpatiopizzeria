@@ -9,8 +9,6 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
     setShowProducts(!showProducts);
   };
 
-  console.log(product);
-
   return (
     <article className={styles.article}>
       <div

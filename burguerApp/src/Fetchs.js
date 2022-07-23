@@ -177,6 +177,5 @@ export const modificarVariantes = async (id, varianteModificada) => {
     body: JSON.stringify(varianteModificada),
   });
   let varianteModificadaRes = await res.json();
-  console.log('varianteModificada', varianteModificada);
   return varianteModificadaRes;
 };

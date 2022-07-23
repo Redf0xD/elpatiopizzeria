@@ -6,7 +6,6 @@ export const ProductFilter = () => {
   const [renderizar, setRenderizar] = useState('');
   useEffect(() => {
     setRenderizar('algo');
-    console.log(renderizar);
     // spam();
   }, [renderizar]);
 

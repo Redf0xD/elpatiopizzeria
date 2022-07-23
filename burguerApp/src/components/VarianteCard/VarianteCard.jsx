@@ -23,7 +23,6 @@ export const VarianteCard = ({ id, titulo, precio, productId }) => {
       })
       .then((result) => {
         if (result.value) {
-          console.log(id, productId);
           deleteVariants(id, productId);
         }
       })
