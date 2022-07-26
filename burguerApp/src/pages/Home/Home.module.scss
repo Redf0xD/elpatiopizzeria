@@ -1,0 +1,32 @@
+@use '../../index.scss' as *;
+.container {
+  position: relative;
+  background: transparent;
+}
+.pattern {
+  position: absolute;
+  background-attachment: fixed;
+  background-color: #e5e5f7;
+  opacity: 0.4;
+  background-image: linear-gradient(135deg, $button-color-primary 25%, transparent 25%),
+    linear-gradient(225deg, $button-color-primary 25%, transparent 25%),
+    linear-gradient(45deg, $button-color-primary 25%, transparent 25%),
+    linear-gradient(315deg, $button-color-primary 25%, #e5e5f7 25%);
+  background-position: 19px 0, 19px 0, 0 0, 0 0;
+  background-size: 38px 38px;
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+@media (min-width: 768px) {
+  .main {
+    margin: 0 5%;
+  }
+}
+@media (min-width: 1024px) {
+  .main {
+    margin: 0 8%;
+  }
+}

@@ -1,16 +1,18 @@
 import React from 'react'
 import { Dropdowns } from '../../components/Dropdowns/Dropdowns'
-import { Googlemaps } from '../../components/Googlemaps/Googlemaps'
 import { Header } from '../../components/Header/Header'
 import { Slider } from '../../components/Slider/Slider'
+import styles from './Home.module.scss'
 
 export const Home = () => {
   return (
-    <main>
-      <Header />
-      <Slider />
-      <Dropdowns />
-      <Googlemaps />
-    </main>
+    <div className={styles.container}>
+      <div className={styles.pattern}></div>
+      <main className={styles.main}>
+        <Slider />
+        <Header />
+        <Dropdowns />
+      </main>
+    </div>
   )
 }
