@@ -1,0 +1,9 @@
+@use '../../index.scss' as *;
+.container {
+  width: 100%;
+  position: relative;
+  max-width: $max-width;
+  height: 100vh;
+  padding: 2.5rem;
+  background-color: #fff;
+}
