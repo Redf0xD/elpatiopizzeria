@@ -52,30 +52,14 @@
       cursor: pointer;
     }
   }
-  .icons {
-    position: absolute;
-    bottom: 4.5rem;
-    display: flex;
-    gap: 1rem;
-    right: 0.5rem;
-    .delivery,
-    .horario {
-      border-radius: 5px;
-      padding: 0.2rem;
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
-      border: 1px solid $color-border-primary;
-      color: $color-text-primary;
-    }
-    .delivery {
-      background: $button-color-primary;
-      cursor: default;
-    }
-    .horario {
-      background: $button-color-warning;
-      cursor: pointer;
-    }
+
+}
+@media (min-width: 768px){
+  .header{
+    margin-top: -50px;
+    z-index: 1;
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 0px 14px rgba(0, 0, 0, 0.2);
   }
 }
