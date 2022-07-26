@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react'
 import { GlobalContext } from './GlobalContext'
 import { reducer } from './GlobalReducer'
+import { useNavigate } from 'react-router-dom'
 import {
   obtenerCategorias,
   agregarCategorias,
@@ -35,11 +36,13 @@ export const ContextProvider = ({ children }) => {
     products: []
   }
   const [state, dispatch] = useReducer(reducer, initialState)
+  const navigate = useNavigate();
 
   ///funciones que modifican estados
   const setCategories = () => {
     obtenerCategorias()
       .then(data => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: GET_CATEGORIES,
           payload: data
@@ -51,6 +54,7 @@ export const ContextProvider = ({ children }) => {
   const addCategories = categoria => {
     agregarCategorias(categoria)
       .then(data => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: ADD_CATEGORIES,
           payload: data
@@ -62,6 +66,7 @@ export const ContextProvider = ({ children }) => {
   const deleteCategories = id => {
     borrarCategorias(id)
       .then(() => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: DELETE_CATEGORIES,
           payload: id
@@ -73,6 +78,7 @@ export const ContextProvider = ({ children }) => {
   const modifyCategories = (id, categoriaModificada) => {
     modificarCategorias(id, categoriaModificada)
       .then(data => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: MODIFY_CATEGORIES,
           payload: data
@@ -95,6 +101,7 @@ export const ContextProvider = ({ children }) => {
   const addProducts = producto => {
     agregarProductos(producto)
       .then(data => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: ADD_PRODUCTS,
           payload: data
@@ -106,6 +113,7 @@ export const ContextProvider = ({ children }) => {
   const deleteProducts = id => {
     borrarProductos(id)
       .then(() => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: DELETE_PRODUCTS,
           payload: id
@@ -117,6 +125,7 @@ export const ContextProvider = ({ children }) => {
   const modifyProducts = (id, productoModificado) => {
     modificarProductos(id, productoModificado)
       .then(data => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: MODIFY_PRODUCTS,
           payload: data
@@ -127,6 +136,7 @@ export const ContextProvider = ({ children }) => {
 
   const addVariants = variante => {
     agregarVariantes(variante).then(data => {
+      if(data.error) return navigate("/ingresar");
       dispatch({
         type: ADD_VARIANTS,
         payload: data
@@ -137,6 +147,7 @@ export const ContextProvider = ({ children }) => {
   const deleteVariants = (id, productId) => {
     borrarVariantes(id)
       .then(() => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: DELETE_VARIANTS,
           payload: { id, productId }
@@ -148,6 +159,7 @@ export const ContextProvider = ({ children }) => {
   const modifyVariants = (id, varianteModificada, productId) => {
     modificarVariantes(id, varianteModificada, productId)
       .then(data => {
+        if(data.error) return navigate("/ingresar");
         dispatch({
           type: MODIFY_VARIANTS,
           payload: { data, id, productId }
