@@ -53,6 +53,12 @@
   overflow-y: scroll;
   gap: 1rem;
   max-width: $max-width;
+  .direccion{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 1rem;
+  }
   p {
     font-weight: bold;
   }
@@ -118,4 +124,5 @@
   @include flex(row, center, center);
   max-width: 720px;
   padding: 2rem;
+  position: relative;
 }
