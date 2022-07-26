@@ -3,6 +3,7 @@
   @include flex(row, center, center);
   gap: 1rem;
   padding: $padding;
+  background: rgba($color: #fff, $alpha: .8);
   .product_info {
     @include flex(column, center, flex-start);
     width: 60%;
