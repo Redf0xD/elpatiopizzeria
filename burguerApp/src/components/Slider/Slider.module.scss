@@ -1,9 +1,8 @@
+@use '../../index.scss' as *;
 .container {
   position: relative;
-  margin: 1%;
   .slider {
     box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
-    max-width: 720px;
     div {
       div {
         display: block;
@@ -16,6 +15,43 @@
           top: 0;
         }
       }
+    }
+  }
+  .icons {
+    position: absolute;
+    bottom: 4.5rem;
+    display: flex;
+    gap: 1rem;
+    right: 0.5rem;
+    z-index: 1;
+    .delivery,
+    .horarioClose,
+    .horarioOpen,
+    .ubicanos {
+      border-radius: 5px;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      color: $color-text-primary;
+      font-weight: bold;
+    }
+    .delivery {
+      background: $button-color-primary;
+      cursor: default;
+    }
+    .horarioClose {
+      background: $button-color-warning;
+      cursor: pointer;
+    }
+    .horarioOpen {
+      background: $cart-color-primary;
+      cursor: pointer;
+    }
+    .ubicanos {
+      background-color: $button-color-ubicanos;
+      cursor: pointer;
     }
   }
 }

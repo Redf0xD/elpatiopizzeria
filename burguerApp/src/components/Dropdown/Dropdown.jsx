@@ -7,7 +7,6 @@ import { useWidth } from '../../hooks/useWidth'
 export const Dropdown = ({ title, subtitle, image, product }) => {
   const { width } = useWidth()
   const [showProducts, setShowProducts] = useState(() => {
-    console.log(width)
     return width > 768
   })
   const handleClick = () => {
