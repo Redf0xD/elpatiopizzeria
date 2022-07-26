@@ -65,7 +65,7 @@ export const ContextProvider = ({ children }) => {
 
   const deleteCategories = id => {
     borrarCategorias(id)
-      .then(() => {
+      .then((data) => {
         if(data.error) return navigate("/ingresar");
         dispatch({
           type: DELETE_CATEGORIES,
@@ -112,7 +112,7 @@ export const ContextProvider = ({ children }) => {
 
   const deleteProducts = id => {
     borrarProductos(id)
-      .then(() => {
+      .then((data) => {
         if(data.error) return navigate("/ingresar");
         dispatch({
           type: DELETE_PRODUCTS,
@@ -146,7 +146,7 @@ export const ContextProvider = ({ children }) => {
 
   const deleteVariants = (id, productId) => {
     borrarVariantes(id)
-      .then(() => {
+      .then((data) => {
         if(data.error) return navigate("/ingresar");
         dispatch({
           type: DELETE_VARIANTS,

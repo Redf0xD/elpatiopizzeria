@@ -34,6 +34,7 @@ export const agregarCategorias = async (categoria) => {
     body: JSON.stringify(categoria),
   });
   let categoriaRes = await res.json();
+  console.log(categoriaRes);
   return categoriaRes;
 };
 
