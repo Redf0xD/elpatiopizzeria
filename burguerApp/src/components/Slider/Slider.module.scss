@@ -19,7 +19,7 @@
   }
   .icons {
     position: absolute;
-    bottom: 4.5rem;
+    bottom: 0.5rem;
     display: flex;
     gap: 1rem;
     right: 0.5rem;
@@ -52,6 +52,11 @@
     .ubicanos {
       background-color: $button-color-ubicanos;
       cursor: pointer;
+    }
+  }
+  @media (min-width: 768px) {
+    .icons {
+      bottom: 4.5rem;
     }
   }
 }
