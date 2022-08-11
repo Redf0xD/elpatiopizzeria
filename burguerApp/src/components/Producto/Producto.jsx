@@ -44,14 +44,16 @@ export const Producto = ({
           <h2 className={styles.product_title}>{title}</h2>
           <p className={styles.product_description}>{description}</p>
           <div className={styles.variant}>
-            {variantes && variantes.length > 0
-              ? variantes.map(variante => (
-                  <div key={variante.id}>
-                    <p>{variante.titulo}</p>
-                    <p className={styles.product_price}>${variante.precio}</p>
-                  </div>
-                ))
-              : null}
+            {variantes && variantes.length > 0 ? (
+              variantes.map(variante => (
+                <div key={variante.id}>
+                  <p>{variante.titulo}</p>
+                  <p className={styles.product_price}>${variante.precio}</p>
+                </div>
+              ))
+            ) : (
+              <p className={styles.product_price}>${price}</p>
+            )}
           </div>
           <button className={styles.product_button} onClick={handleClick}>
             Pedir +
