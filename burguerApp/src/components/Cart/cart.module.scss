@@ -79,6 +79,7 @@
     height: 1.5rem;
   }
   .labelArea {
+    text-align: center;
     font-weight: bold;
     width: 100%;
     @include flex(column, center, space-between);
