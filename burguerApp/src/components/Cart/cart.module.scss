@@ -64,7 +64,7 @@
   }
   label {
     width: 100%;
-    font-weight: bold;
+
     //asd//
   }
   .label {
@@ -79,6 +79,7 @@
     height: 1.5rem;
   }
   .labelArea {
+    font-weight: bold;
     width: 100%;
     @include flex(column, center, space-between);
     cursor: pointer;
