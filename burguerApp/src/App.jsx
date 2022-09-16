@@ -19,7 +19,6 @@ function App() {
           <Route path='categorias' element={<Categorias />} />
           <Route path='productos' element={<Productos />} />
         </Route>
-
         {/* <div style={{ background: 'white', padding: '16px' }}>
         <QRCode value={import.meta.env.VITE_APP_URLPARAQR} />
       </div> */}
