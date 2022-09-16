@@ -1,0 +1,62 @@
+@use '../../index.scss' as *;
+.container {
+  position: relative;
+  .slider {
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
+    div {
+      div {
+        display: block;
+        height: 0;
+        padding: 56.25% 0 0 0;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        img {
+          top: 0;
+        }
+      }
+    }
+  }
+  .icons {
+    position: absolute;
+    bottom: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    right: 0.5rem;
+    z-index: 1;
+    .delivery,
+    .horarioClose,
+    .horarioOpen,
+    .ubicanos {
+      border-radius: 5px;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      color: $color-text-primary;
+      font-weight: bold;
+    }
+    .delivery {
+      background: $button-color-primary;
+      cursor: default;
+    }
+    .horarioClose {
+      background: $button-color-warning;
+      cursor: pointer;
+    }
+    .horarioOpen {
+      background: $cart-color-primary;
+      cursor: pointer;
+    }
+    .ubicanos {
+      background-color: $button-color-ubicanos;
+      cursor: pointer;
+    }
+  }
+  @media (min-width: 768px) {
+    .icons {
+      bottom: 4.5rem;
+    }
+  }
+}

@@ -34,6 +34,7 @@ export const agregarCategorias = async (categoria) => {
     body: JSON.stringify(categoria),
   });
   let categoriaRes = await res.json();
+  console.log(categoriaRes);
   return categoriaRes;
 };
 
@@ -177,6 +178,5 @@ export const modificarVariantes = async (id, varianteModificada) => {
     body: JSON.stringify(varianteModificada),
   });
   let varianteModificadaRes = await res.json();
-  console.log('varianteModificada', varianteModificada);
   return varianteModificadaRes;
 };

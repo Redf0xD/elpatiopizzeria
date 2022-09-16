@@ -1,104 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { GlobalContext } from '../../GlobalContext/GlobalContext';
-import { OrderDetail } from '../OrderDetail/OrderDetail';
-import { Modal } from '../Modal/Modal';
-import { FiShoppingBag } from 'react-icons/fi';
-import swal from 'sweetalert2';
-import { BsCheck } from 'react-icons/bs';
-import styles from './cart.module.scss';
-import { Button } from '../Button/Button.jsx';
+import React, { useState, useEffect } from 'react'
+import { GlobalContext } from '../../GlobalContext/GlobalContext'
+import { OrderDetail } from '../OrderDetail/OrderDetail'
+import { Modal } from '../Modal/Modal'
+import { FiShoppingBag } from 'react-icons/fi'
+import swal from 'sweetalert2'
+import { BsCheck } from 'react-icons/bs'
+import styles from './cart.module.scss'
+import { Button } from '../Button/Button.jsx'
 export const Cart = () => {
   const { deleteFromCart, modifyFromCart, cart } =
-    React.useContext(GlobalContext);
+    React.useContext(GlobalContext)
   const [infoFinal, setInfoFinal] = useState({
     nombre: '',
     'Forma de entrega': 'delivery',
-    'Dirección de entrega': '',
+    Dirección: '',
+    'Entre calles': '',
+    Localidad: '',
+    Provincia: '',
     'Detalle de entrega': '',
     'Fecha de entrega': 'lo antes posible',
     'Hora de entrega': '',
     'Metodo de pago': 'efectivo',
     'Datos adicionales': '',
-    totalGeneral: 0,
-  });
+    totalGeneral: 0
+  })
 
-  const [showCart, setShowCart] = useState(false);
+  const [showCart, setShowCart] = useState(false)
 
   useEffect(() => {
     const totalGeneral = cart.reduce((total, order) => {
-      return total + order.precio * order.cantidad;
-    }, 0);
-    setInfoFinal((prev) => ({ ...prev, totalGeneral }));
-    console.log('totalGeneral', totalGeneral);
-  }, [cart]);
+      return total + order.precio * order.cantidad
+    }, 0)
+    setInfoFinal(prev => ({ ...prev, totalGeneral }))
+  }, [cart])
 
-  const handleChange = (e) => {
-    setInfoFinal({ ...infoFinal, [e.target.name]: e.target.value });
+  const handleChange = e => {
+    setInfoFinal({ ...infoFinal, [e.target.name]: e.target.value })
     if (
       e.target.name === 'Detalle de entrega' &&
       e.target.value === 'lo antes posible'
     ) {
-      setInfoFinal((prev) => ({
+      setInfoFinal(prev => ({
         ...prev,
         'Fecha de entrega': '',
-        'Hora de entrega': '',
-      }));
+        'Hora de entrega': ''
+      }))
     }
-  };
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errores = handleError();
+  const handleSubmit = e => {
+    e.preventDefault()
+    const errores = handleError()
     if (errores) {
-      new swal('Error', errores, 'error');
-      return;
+      new swal('Error', errores, 'error')
+      return
     }
-    var link = document.createElement('a');
+    var link = document.createElement('a')
     let info =
-      'Hola Luciano Burgers! Quiero hacer un pedido, este es el detalle: ';
+      'Hola Luciano Burgers! Quiero hacer un pedido, este es el detalle: '
     {
-      cart.forEach((p) => {
-        info += `\n${p.nombre} x${p.cantidad} - $${p.precio} ★ - `;
-      });
+      cart.forEach(p => {
+        info += `%0A%F0%9F%94%B8${p.nombre} x${p.cantidad} - $${p.precio} ★ + `
+      })
     }
     for (let prop in infoFinal) {
       if (infoFinal[prop] !== '') {
         if (prop === 'totalGeneral') {
-          info += ` Total: $${infoFinal[prop]}`;
+          info += ` %0A%F0%9F%94%B8Total: $${infoFinal[prop]}`
         } else {
-          info += ` ${prop} : ${infoFinal[prop]} || `;
+          info += ` %0A%F0%9F%94%B8${prop} : ${infoFinal[prop]}`
         }
       }
     }
 
     link.href =
-      'https://api.whatsapp.com/send/?phone=5401149166103&text=' + info;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    setShowCart((prev) => !prev);
-  };
+      'https://api.whatsapp.com/send/?phone=5401149166103&text=' + info
+    link.target = '_blank'
+    document.body.appendChild(link)
+    link.click()
+    setShowCart(prev => !prev)
+  }
 
   const handleError = () => {
     if (infoFinal['Forma de entrega'] === '') {
-      return 'Por favor, seleccione una forma de entrega';
+      return 'Por favor, seleccione una forma de entrega'
     } else if (infoFinal['Fecha de entrega'] === '') {
-      return 'Por favor, ingrese cuando se lo enviamos';
+      return 'Por favor, ingrese cuando se lo enviamos'
     } else if (infoFinal['Metodo de pago'] === '') {
-      return 'Por favor, seleccione un metodo de pago';
+      return 'Por favor, seleccione un metodo de pago'
     } else if (infoFinal['totalGeneral'] === 0) {
-      return 'Por favor, agregue al menos un producto';
+      return 'Por favor, agregue al menos un producto'
     } else {
-      return '';
+      return ''
     }
-  };
+  }
 
   return (
     <>
       {cart.length > 0 && (
         <button
           className={styles.cart}
-          onClick={() => setShowCart((prev) => !prev)}
+          onClick={() => setShowCart(prev => !prev)}
         >
           <FiShoppingBag />
           <p>${infoFinal.totalGeneral}</p>
@@ -110,7 +112,7 @@ export const Cart = () => {
             <form className={styles.cartDetail} onSubmit={handleSubmit}>
               <Button setShowModal={setShowCart} />
               <h2 className={styles.cartDetail_title}>Detalles del pedido</h2>
-              {cart.map((order) => {
+              {cart.map(order => {
                 return (
                   <OrderDetail
                     key={order.nombre}
@@ -120,29 +122,29 @@ export const Cart = () => {
                     deleteFromCart={deleteFromCart}
                     modifyFromCart={modifyFromCart}
                   />
-                );
+                )
               })}
               <p>Formas de entrega</p>
-              <label htmlFor='delivery' className={styles.label}>
+              <label htmlFor="delivery" className={styles.label}>
                 Delivery
                 <input
                   onChange={handleChange}
-                  value='delivery'
-                  type='radio'
-                  id='delivery'
-                  name='Forma de entrega'
+                  value="delivery"
+                  type="radio"
+                  id="delivery"
+                  name="Forma de entrega"
                   defaultChecked
                 />
               </label>
 
-              <label htmlFor='takeaway' className={styles.label}>
+              <label htmlFor="takeaway" className={styles.label}>
                 Take Away
                 <input
                   onChange={handleChange}
-                  value='take away'
-                  type='radio'
-                  id='takeaway'
-                  name='Forma de entrega'
+                  value="take away"
+                  type="radio"
+                  id="takeaway"
+                  name="Forma de entrega"
                 />
               </label>
 
@@ -153,23 +155,55 @@ export const Cart = () => {
                   : 'retira'}
                 <input
                   onChange={handleChange}
-                  type='text'
-                  name='nombre'
+                  type="text"
+                  name="nombre"
                   required
                   className={styles.input}
                 />
               </label>
               {infoFinal['Forma de entrega'] === 'delivery' && (
-                <label>
-                  Dirección de entrega completa
-                  <input
-                    onChange={handleChange}
-                    name='Dirección de entrega'
-                    type='text'
-                    required
-                    className={styles.input}
-                  />
-                </label>
+                <div className={styles.direccion}>
+                  <label>
+                    Dirección
+                    <input
+                      onChange={handleChange}
+                      name="Dirección"
+                      type="text"
+                      required
+                      className={styles.input}
+                    />
+                  </label>
+                  <label>
+                    Entre calles
+                    <input
+                      onChange={handleChange}
+                      name="Entre calles"
+                      type="text"
+                      required
+                      className={styles.input}
+                    />
+                  </label>
+                  <label>
+                    Localidad
+                    <input
+                      onChange={handleChange}
+                      name="Localidad"
+                      type="text"
+                      required
+                      className={styles.input}
+                    />
+                  </label>
+                  <label>
+                   Provincia 
+                    <input
+                      onChange={handleChange}
+                      name="Provincia"
+                      type="text"
+                      required
+                      className={styles.input}
+                    />
+                  </label>
+                </div>
               )}
               <p>
                 ¿Cuando{' '}
@@ -178,14 +212,14 @@ export const Cart = () => {
                   : 'lo retirás'}
                 ?
               </p>
-              <label htmlFor='una fecha y hora' className={styles.label}>
+              <label htmlFor="una fecha y hora" className={styles.label}>
                 En una fecha y hora
                 <input
                   onChange={handleChange}
-                  value='una fecha y hora'
-                  type='radio'
-                  id='una fecha y hora'
-                  name='Detalle de entrega'
+                  value="una fecha y hora"
+                  type="radio"
+                  id="una fecha y hora"
+                  name="Detalle de entrega"
                 />
               </label>
               {infoFinal['Detalle de entrega'] === 'una fecha y hora' && (
@@ -194,86 +228,87 @@ export const Cart = () => {
                     Fecha
                     <input
                       onChange={handleChange}
-                      name='Fecha de entrega'
-                      type='date'
+                      name="Fecha de entrega"
+                      type="date"
                       required
                       min={new Date().toISOString().split('T')[0]}
-                      max='2040-12-31'
+                      max="2040-12-31"
                     />
                   </label>
                   <label>
                     Hora
                     <input
                       onChange={handleChange}
-                      name='Hora de entrega'
-                      type='time'
+                      name="Hora de entrega"
+                      type="time"
                       required
                     />
                   </label>
                 </>
               )}
-              <label htmlFor='Lo antes posible' className={styles.label}>
+              <label htmlFor="Lo antes posible" className={styles.label}>
                 Lo antes posible
                 <input
                   onChange={handleChange}
-                  value='lo antes posible'
-                  type='radio'
-                  id='lo antes posible'
-                  name='Detalle de entrega'
+                  value="lo antes posible"
+                  type="radio"
+                  id="lo antes posible"
+                  name="Detalle de entrega"
                   defaultChecked
                 />
               </label>
 
               <p>Método de pago</p>
-              <label htmlFor='efectivo' className={styles.label}>
+              <label htmlFor="efectivo" className={styles.label}>
                 Efectivo
                 <input
-                  type='radio'
+                  type="radio"
                   onChange={handleChange}
-                  name='Metodo de pago'
-                  value='efectivo'
-                  id='efectivo'
+                  name="Metodo de pago"
+                  value="efectivo"
+                  id="efectivo"
                   defaultChecked
                 />
               </label>
-              <label htmlFor='mercado pago' className={styles.label}>
+              <label htmlFor="mercado pago" className={styles.label}>
                 Mercado Pago
                 <input
-                  type='radio'
+                  type="radio"
                   onChange={handleChange}
-                  name='Metodo de pago'
-                  value='mercado pago'
-                  id='mercado pago'
+                  name="Metodo de pago"
+                  value="mercado pago"
+                  id="mercado pago"
                 />
               </label>
-              <label htmlFor='tarjeta de debito' className={styles.label}>
+              <label htmlFor="tarjeta de debito" className={styles.label}>
                 Tarjeta de débito
                 <input
-                  type='radio'
+                  type="radio"
                   onChange={handleChange}
-                  name='Metodo de pago'
-                  value='tarjeta de debito'
-                  id='tarjeta de debito'
+                  name="Metodo de pago"
+                  value="tarjeta de debito"
+                  id="tarjeta de debito"
                 />
               </label>
-              <label htmlFor='tarjeta de credito' className={styles.label}>
+              <label htmlFor="tarjeta de credito" className={styles.label}>
                 Tarjeta de crédito
                 <input
-                  value='tarjeta de credito'
-                  type='radio'
+                  value="tarjeta de credito"
+                  type="radio"
                   onChange={handleChange}
-                  name='Metodo de pago'
-                  id='tarjeta de credito'
+                  name="Metodo de pago"
+                  id="tarjeta de credito"
                 />
               </label>
-              <label htmlFor='textarea' className={styles.label}>
+              <label htmlFor="textarea" className={styles.labelArea}>
                 Datos adicionales
                 <textarea
                   onChange={handleChange}
-                  type='text'
-                  id='textarea'
-                  name='Datos adicionales'
-                  placeholder='Ej: Si querés quitar algun ingrediente'
+                  type="text"
+                  id="textarea"
+                  name="Datos adicionales"
+                  placeholder="Ej: Si querés quitar algún ingrediente"
+                  className={styles.textarea}
                 />
               </label>
               <div className={styles.confirmar}>
@@ -289,11 +324,12 @@ export const Cart = () => {
             </form>
           ) : (
             <div className={styles.noProduct}>
+              <Button setShowModal={setShowCart} />
               No hay productos para mostrar
             </div>
           )}
         </Modal>
       )}
     </>
-  );
-};
+  )
+}

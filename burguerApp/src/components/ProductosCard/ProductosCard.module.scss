@@ -22,9 +22,9 @@
       justify-content: flex-end;
       gap: 1rem;
       .editar,
-      .eliminar {
-        appearance: none;
-        border: none;
+      .eliminar,
+      .añadir,
+      .ver {
         padding: 0.5rem;
         font-weight: bold;
         cursor: pointer;
@@ -43,12 +43,31 @@
       .eliminar {
         background: #dc3545;
       }
+      .ver {
+        background: #0d6efd;
+      }
+      .añadir {
+        background: #6c757d;
+      }
     }
   }
   .img {
-    width: 250px;
-    height: 250px;
-    border-radius: 10%;
+    border-radius: 10px;
+    display: block;
+    height: 0;
+    padding: 56.25% 0 0 0;
+    position: relative;
+    width: 100%;
     overflow: hidden;
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
+    img {
+      top: 0;
+    }
+  }
+  .variantes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
   }
 }

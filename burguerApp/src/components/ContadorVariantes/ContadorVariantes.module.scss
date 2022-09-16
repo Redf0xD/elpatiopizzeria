@@ -1,0 +1,23 @@
+@use '../../index.scss' as *;
+.info_pago {
+  @include flex(row, space-between, center);
+  gap: 0.2rem;
+  width: 100%;
+  .info_cantidad {
+    @include flex(row, center, center);
+    gap: 0.2rem;
+    height: 100%;
+    .cantidad{
+      margin: 0 1rem;
+    }
+  }
+  .info_button {
+    border-radius: 9999999px;
+    width: 28px;
+    height: 28px;
+    background: $button-color-primary;
+    font-weight: bold;
+    color: $bg-color-primary;
+    @include flex(row, center, center);
+  }
+}
