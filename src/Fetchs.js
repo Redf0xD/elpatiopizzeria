@@ -21,7 +21,7 @@ export const obtenerCategorias = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token: "2f311e2ad368746601b8f703965b261768b618dba7a84c2752aba20c7f624a0a",
+      token: import.meta.env.VITE_CLIENT_TOKEN,
     }),
   });
   let categorias = await res.json();
@@ -78,7 +78,7 @@ export const obtenerProductos = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token: "2f311e2ad368746601b8f703965b261768b618dba7a84c2752aba20c7f624a0a",
+      token: import.meta.env.VITE_CLIENT_TOKEN,
     }),
   });
   let productos = await res.json();
@@ -133,7 +133,7 @@ export const validarPassword = async (password) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ password }),
+    body: JSON.stringify(password),
   });
   let loginRes = await res.json();
   return loginRes;
