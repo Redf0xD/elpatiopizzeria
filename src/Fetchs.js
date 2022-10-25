@@ -2,10 +2,10 @@
 
 export const subirImagen = async (imagen) => {
   let data = new FormData();
-  data.append('imagen', imagen);
+  data.append("imagen", imagen);
   const url = import.meta.env.VITE_APP_IMGSVR;
   let res = await fetch(`${url}/imagen`, {
-    method: 'POST',
+    method: "POST",
     body: data,
   });
   let imagenRes = await res.json();
@@ -14,10 +14,15 @@ export const subirImagen = async (imagen) => {
 
 export const obtenerCategorias = async () => {
   const url = import.meta.env.VITE_APP_URL;
-  let res = await fetch(`${url}/categorias`, {
+  console.log({ url, obtenerCategorias: "Categorias" });
+  let res = await fetch(`${url}/categorias/getCategorias`, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      token: "2f311e2ad368746601b8f703965b261768b618dba7a84c2752aba20c7f624a0a",
+    }),
   });
   let categorias = await res.json();
   return categorias;
@@ -26,10 +31,10 @@ export const obtenerCategorias = async () => {
 export const agregarCategorias = async (categoria) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(categoria),
   });
@@ -41,10 +46,10 @@ export const agregarCategorias = async (categoria) => {
 export const borrarCategorias = async (id) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
   });
   let categoriaBorrada = await res.json();
@@ -54,10 +59,10 @@ export const borrarCategorias = async (id) => {
 export const modificarCategorias = async (id, categoriaModificada) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/categorias/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(categoriaModificada),
   });
@@ -67,10 +72,14 @@ export const modificarCategorias = async (id, categoriaModificada) => {
 
 export const obtenerProductos = async () => {
   const url = import.meta.env.VITE_APP_URL;
-  let res = await fetch(`${url}/productos`, {
+  let res = await fetch(`${url}/productos/getProductos`, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      token: "2f311e2ad368746601b8f703965b261768b618dba7a84c2752aba20c7f624a0a",
+    }),
   });
   let productos = await res.json();
   return productos;
@@ -79,10 +88,10 @@ export const obtenerProductos = async () => {
 export const agregarProductos = async (producto) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(producto),
   });
@@ -93,10 +102,10 @@ export const agregarProductos = async (producto) => {
 export const borrarProductos = async (id) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
   });
   let productoBorrado = await res.json();
@@ -106,10 +115,10 @@ export const borrarProductos = async (id) => {
 export const modificarProductos = async (id, productoModificado) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/productos/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(productoModificado),
   });
@@ -120,9 +129,9 @@ export const modificarProductos = async (id, productoModificado) => {
 export const validarPassword = async (password) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/auth/ingresar`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ password }),
   });
@@ -132,10 +141,14 @@ export const validarPassword = async (password) => {
 
 export const obtenerVariantes = async (id) => {
   const url = import.meta.env.VITE_APP_URL;
-  let res = await fetch(`${url}/variantes/` + id, {
+  let res = await fetch(`${url}/variantes/getVariantes/` + id, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      token: "2f311e2ad368746601b8f703965b261768b618dba7a84c2752aba20c7f624a0a",
+    }),
   });
   let variantes = await res.json();
   return variantes;
@@ -144,9 +157,9 @@ export const obtenerVariantes = async (id) => {
 export const agregarVariantes = async (body) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/variantes`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   });
@@ -157,10 +170,10 @@ export const agregarVariantes = async (body) => {
 export const borrarVariantes = async (id) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/variantes/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
   });
   let varianteBorrada = await res.json();
@@ -170,10 +183,10 @@ export const borrarVariantes = async (id) => {
 export const modificarVariantes = async (id, varianteModificada) => {
   const url = import.meta.env.VITE_APP_URL;
   let res = await fetch(`${url}/variantes/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(varianteModificada),
   });

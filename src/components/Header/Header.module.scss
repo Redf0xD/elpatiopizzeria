@@ -1,4 +1,4 @@
-@use '../../index.scss' as *;
+@use "../../index.scss" as *;
 
 .header {
   @include flex(column, center, center);
@@ -23,7 +23,9 @@
     width: 20%;
     max-width: 320px;
     position: relative;
-    img{
+    border-radius: 10px;
+    overflow: hidden;
+    img {
       position: relative;
     }
   }
@@ -52,10 +54,9 @@
       cursor: pointer;
     }
   }
-
 }
-@media (min-width: 768px){
-  .header{
+@media (min-width: 768px) {
+  .header {
     margin-top: -50px;
     z-index: 1;
     background: #fff;
