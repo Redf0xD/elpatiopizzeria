@@ -42,7 +42,7 @@ export const FormPw = () => {
       <label htmlFor="contraseña" className={styles.form_label}>
         Ingrese contraseña para acceder
         <input
-          type="text"
+          type="password"
           onChange={handleChange}
           name="clave"
           value={form.clave}

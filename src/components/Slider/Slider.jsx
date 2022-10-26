@@ -1,101 +1,102 @@
 // Import Swiper modules
-import { Autoplay, EffectFade } from 'swiper'
+import { Autoplay, EffectFade } from "swiper";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react'
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import Imagenes from "../../Images/WhatsApp Image 2022-10-19 at 12.25.50.jpg";
+console.log({ Imagenes });
 // Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/autoplay'
-import 'swiper/css/effect-fade';
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/effect-fade";
 // Import custom styles
-import styles from './Slider.module.scss'
+import styles from "./Slider.module.scss";
 // Import dependencys
-import { useState, useEffect } from 'react'
-import { Horarios } from '../Horarios/Horarios.jsx'
-import { Modal } from '../Modal/Modal'
-import { Googlemaps } from '../Googlemaps/Googlemaps'
-import { MdDeliveryDining, MdLocationOn } from 'react-icons/md'
-import { BiTimeFive } from 'react-icons/bi'
+import { useState, useEffect } from "react";
+import { Horarios } from "../Horarios/Horarios.jsx";
+import { Modal } from "../Modal/Modal";
+import { Googlemaps } from "../Googlemaps/Googlemaps";
+import { MdDeliveryDining, MdLocationOn } from "react-icons/md";
+import { BiTimeFive } from "react-icons/bi";
 
 const horarios = {
-  lunes: { de: '11:00', hasta: '23:30' },
-  martes: { de: '11:00', hasta: '23:30' },
-  miercoles: { de: '11:00', hasta: '23:30' },
-  jueves: { de: '11:00', hasta: '23:30' },
-  viernes: { de: '11:00', hasta: '23:30' },
-  sabado: { de: '11:00', hasta: '23:30' },
-  domingo: { de: '11:00', hasta: '23:30' }
-}
+  lunes: { de: "11:00", hasta: "23:30" },
+  martes: { de: "11:00", hasta: "23:30" },
+  miercoles: { de: "11:00", hasta: "23:30" },
+  jueves: { de: "11:00", hasta: "23:30" },
+  viernes: { de: "11:00", hasta: "23:30" },
+  sabado: { de: "11:00", hasta: "23:30" },
+  domingo: { de: "11:00", hasta: "23:30" },
+};
 
 const openOrClosed = () => {
-  const fechaActual = new Date()
+  const fechaActual = new Date();
   if (!horarios[getDayString(fechaActual.getDay())]) {
-    return 'Cerrado'
+    return "Cerrado";
   } else {
-    const horaActual = fechaActual.getHours()
-    const minutosActual = fechaActual.getMinutes()
+    const horaActual = fechaActual.getHours();
+    const minutosActual = fechaActual.getMinutes();
     const horaDeApertura =
-      horarios[getDayString(fechaActual.getDay())].de.split(':')[0]
+      horarios[getDayString(fechaActual.getDay())].de.split(":")[0];
     const minutosDeApertura =
-      horarios[getDayString(fechaActual.getDay())].de.split(':')[1]
+      horarios[getDayString(fechaActual.getDay())].de.split(":")[1];
     const horaDeCierre =
-      horarios[getDayString(fechaActual.getDay())].hasta.split(':')[0]
+      horarios[getDayString(fechaActual.getDay())].hasta.split(":")[0];
     const minutosDeCierre =
-      horarios[getDayString(fechaActual.getDay())].hasta.split(':')[1]
+      horarios[getDayString(fechaActual.getDay())].hasta.split(":")[1];
     if (
       horaActual < horaDeApertura ||
       (horaActual === horaDeApertura && minutosActual < minutosDeApertura)
     ) {
-      return 'Cerrado'
+      return "Cerrado";
     } else if (
       horaActual > horaDeCierre ||
       (horaActual === horaDeCierre && minutosActual > minutosDeCierre)
     ) {
-      return 'Cerrado'
+      return "Cerrado";
     } else {
-      return 'Abierto'
+      return "Abierto";
     }
   }
-}
+};
 
-const getDayString = numero => {
+const getDayString = (numero) => {
   switch (numero) {
     case 0:
-      return 'domingo'
+      return "domingo";
     case 1:
-      return 'lunes'
+      return "lunes";
     case 2:
-      return 'martes'
+      return "martes";
     case 3:
-      return 'miercoles'
+      return "miercoles";
     case 4:
-      return 'jueves'
+      return "jueves";
     case 5:
-      return 'viernes'
+      return "viernes";
     case 6:
-      return 'sabado'
+      return "sabado";
     default:
-      return 'domingo'
+      return "domingo";
   }
-}
+};
 export const Slider = () => {
-  const [modal, setModal] = useState(false)
-  const [map, setMap] = useState(false)
-  const [horarios, setHorarios] = useState(openOrClosed())
+  const [modal, setModal] = useState(false);
+  const [map, setMap] = useState(false);
+  const [horarios, setHorarios] = useState(openOrClosed());
   const handleHourClick = () => {
-    setModal(!modal)
-  }
+    setModal(!modal);
+  };
   useEffect(() => {
     setTimeout(() => {
-      setHorarios(openOrClosed())
-    }, 60000)
-  }, [horarios])
+      setHorarios(openOrClosed());
+    }, 60000);
+  }, [horarios]);
 
   return (
     <div className={styles.container}>
       <Swiper
         modules={[Autoplay, EffectFade]}
-        effect='fade'
+        effect="fade"
         spaceBetween={0}
         centeredSlides={true}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -105,26 +106,32 @@ export const Slider = () => {
       >
         <SwiperSlide>
           <img
-            src="https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg"
+            src="src/Images/WhatsApp Image 2022-10-19 at 12.25.50.jpg"
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/FJKXKQKMMJBV7KQ7XQ3YNFO7LU.jpg"
+            src="src/Images/WhatsApp Image 2022-10-19 at 12.28.23.jpg"
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="https://www.cocinayvino.com/wp-content/uploads/2021/03/www.cocinayvino.com-araxi-burger-10-anos-de-hamburguesas-y-mucho-mas-argentina-burger-e1615839960743-1200x900.jpg"
+            src="src/Images/WhatsApp Image 2022-10-19 at 12.39.07.jpg"
+            alt=""
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="src/Images/WhatsApp Image 2022-10-19 at 12.39.32.jpg"
             alt=""
           />
         </SwiperSlide>
       </Swiper>
       <div className={styles.icons}>
         <button
-          onClick={() => setMap(prev => !prev)}
+          onClick={() => setMap((prev) => !prev)}
           className={styles.ubicanos}
         >
           Ubícanos <MdLocationOn />
@@ -134,7 +141,7 @@ export const Slider = () => {
         </p>
         <button
           className={
-            horarios === 'Cerrado' ? styles.horarioClose : styles.horarioOpen
+            horarios === "Cerrado" ? styles.horarioClose : styles.horarioOpen
           }
           onClick={handleHourClick}
         >
@@ -144,7 +151,7 @@ export const Slider = () => {
           <Modal setModal={setModal}>
             <Horarios setModal={setModal} />
           </Modal>
-        )}{' '}
+        )}{" "}
         {map && (
           <Modal setModal={setMap}>
             <Googlemaps setModal={setMap} />
@@ -152,5 +159,5 @@ export const Slider = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};

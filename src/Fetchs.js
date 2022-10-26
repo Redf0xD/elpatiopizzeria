@@ -14,7 +14,6 @@ export const subirImagen = async (imagen) => {
 
 export const obtenerCategorias = async () => {
   const url = import.meta.env.VITE_APP_URL;
-  console.log({ url, obtenerCategorias: "Categorias" });
   let res = await fetch(`${url}/categorias/getCategorias`, {
     method: "POST",
     headers: {

@@ -40,15 +40,15 @@ export const Header = () => {
         <a href="tel:+5491149166103" className={styles.button} target="_blank">
           <IoIosCall />
         </a>
-        <a
+        {/*<a
           href="https://www.facebook.com"
           className={styles.button}
           target="_blank"
         >
           <BsFacebook />
-        </a>
+        </a>*/}
         <a
-          href="https://www.instagram.com"
+          href="https://www.instagram.com/el_patio_pizzeria/"
           className={styles.button}
           target="_blank"
         >
