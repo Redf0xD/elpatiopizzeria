@@ -31,22 +31,22 @@ export const Header = () => {
       </div>
       <div className={styles.header_social}>
         <a
-          href="https://wa.me/+5491149166103?text=%C2%A1Hola%20quiero%20hacer%2C%20una%20consulta%20!"
+          href="https://wa.me/+5493518517879?text=%C2%A1Hola%20quiero%20hacer%2C%20una%20consulta%20!"
           className={styles.button}
           target="_blank"
         >
           <FaWhatsapp />
         </a>
-        <a href="tel:+5491149166103" className={styles.button} target="_blank">
+        <a href="tel:+5493518517879" className={styles.button} target="_blank">
           <IoIosCall />
         </a>
-        {/*<a
-          href="https://www.facebook.com"
+        <a
+          href="https://www.facebook.com/elpatiopizzeria.ok"
           className={styles.button}
           target="_blank"
         >
           <BsFacebook />
-        </a>*/}
+        </a>
         <a
           href="https://www.instagram.com/el_patio_pizzeria/"
           className={styles.button}

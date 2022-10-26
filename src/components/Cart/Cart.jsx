@@ -1,118 +1,118 @@
-import React, { useState, useEffect } from 'react'
-import { GlobalContext } from '../../GlobalContext/GlobalContext'
-import { OrderDetail } from '../OrderDetail/OrderDetail'
-import { Modal } from '../Modal/Modal'
-import { FiShoppingBag } from 'react-icons/fi'
-import swal from 'sweetalert2'
-import { BsCheck } from 'react-icons/bs'
-import styles from './cart.module.scss'
-import { Button } from '../Button/Button.jsx'
+import React, { useState, useEffect } from "react";
+import { GlobalContext } from "../../GlobalContext/GlobalContext";
+import { OrderDetail } from "../OrderDetail/OrderDetail";
+import { Modal } from "../Modal/Modal";
+import { FiShoppingBag } from "react-icons/fi";
+import swal from "sweetalert2";
+import { BsCheck } from "react-icons/bs";
+import styles from "./cart.module.scss";
+import { Button } from "../Button/Button.jsx";
 export const Cart = () => {
   const { deleteFromCart, modifyFromCart, cart } =
-    React.useContext(GlobalContext)
+    React.useContext(GlobalContext);
   const [infoFinal, setInfoFinal] = useState({
-    nombre: '',
-    'Forma de entrega': 'delivery',
-    Dirección: '',
-    'Entre calles': '',
-    Localidad: '',
-    Provincia: '',
-    'Detalle de entrega': '',
-    'Fecha de entrega': 'lo antes posible',
-    'Hora de entrega': '',
-    'Metodo de pago': 'efectivo',
-    'Datos adicionales': '',
-    totalGeneral: 0
-  })
+    nombre: "",
+    "Forma de entrega": "delivery",
+    Dirección: "",
+    "Entre calles": "",
+    Localidad: "",
+    Provincia: "",
+    "Detalle de entrega": "",
+    "Fecha de entrega": "lo antes posible",
+    "Hora de entrega": "",
+    "Metodo de pago": "efectivo",
+    "Datos adicionales": "",
+    totalGeneral: 0,
+  });
 
-  const [showCart, setShowCart] = useState(false)
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     const totalGeneral = cart.reduce((total, order) => {
-      return total + order.precio * order.cantidad
-    }, 0)
-    setInfoFinal(prev => ({ ...prev, totalGeneral }))
-  }, [cart])
+      return total + order.precio * order.cantidad;
+    }, 0);
+    setInfoFinal((prev) => ({ ...prev, totalGeneral }));
+  }, [cart]);
 
-  const handleChange = e => {
-    setInfoFinal({ ...infoFinal, [e.target.name]: e.target.value })
+  const handleChange = (e) => {
+    setInfoFinal({ ...infoFinal, [e.target.name]: e.target.value });
     if (
-      e.target.name === 'Detalle de entrega' &&
-      e.target.value === 'lo antes posible'
+      e.target.name === "Detalle de entrega" &&
+      e.target.value === "lo antes posible"
     ) {
-      setInfoFinal(prev => ({
+      setInfoFinal((prev) => ({
         ...prev,
-        'Fecha de entrega': '',
-        'Hora de entrega': ''
-      }))
+        "Fecha de entrega": "",
+        "Hora de entrega": "",
+      }));
     }
-  }
+  };
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    const errores = handleError()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errores = handleError();
     if (errores) {
-      new swal('Error', errores, 'error')
-      return
+      new swal("Error", errores, "error");
+      return;
     }
-    var link = document.createElement('a')
+    var link = document.createElement("a");
     let info =
-      'Hola Luciano Burgers! Quiero hacer un pedido, este es el detalle: '
+      "Hola El patio pizzeria! Quiero hacer un pedido, este es el detalle: ";
     {
-      cart.forEach(p => {
-        info += `%0A%F0%9F%94%B8${p.nombre} x${p.cantidad} - $${p.precio} ★ + `
-      })
+      cart.forEach((p) => {
+        info += `%0A%F0%9F%94%B8${p.nombre} x${p.cantidad} - $${p.precio} ★ + `;
+      });
     }
     for (let prop in infoFinal) {
-      if (infoFinal[prop] !== '') {
-        if (prop === 'totalGeneral') {
-          info += ` %0A%F0%9F%94%B8Total: $${infoFinal[prop]}`
+      if (infoFinal[prop] !== "") {
+        if (prop === "totalGeneral") {
+          info += ` %0A%F0%9F%94%B8Total: $${infoFinal[prop]}`;
         } else {
-          info += ` %0A%F0%9F%94%B8${prop} : ${infoFinal[prop]}`
+          info += ` %0A%F0%9F%94%B8${prop} : ${infoFinal[prop]}`;
         }
       }
     }
 
     link.href =
-      'https://api.whatsapp.com/send/?phone=5401149166103&text=' + info
-    link.target = '_blank'
-    document.body.appendChild(link)
-    link.click()
-    setShowCart(prev => !prev)
-  }
+      "https://api.whatsapp.com/send/?phone=5493518517879&text=" + info;
+    link.target = "_blank";
+    document.body.appendChild(link);
+    link.click();
+    setShowCart((prev) => !prev);
+  };
 
   const handleError = () => {
-    if (infoFinal['Forma de entrega'] === '') {
-      return 'Por favor, seleccione una forma de entrega'
-    } else if (infoFinal['Fecha de entrega'] === '') {
-      return 'Por favor, ingrese cuando se lo enviamos'
-    } else if (infoFinal['Metodo de pago'] === '') {
-      return 'Por favor, seleccione un metodo de pago'
-    } else if (infoFinal['totalGeneral'] === 0) {
-      return 'Por favor, agregue al menos un producto'
+    if (infoFinal["Forma de entrega"] === "") {
+      return "Por favor, seleccione una forma de entrega";
+    } else if (infoFinal["Fecha de entrega"] === "") {
+      return "Por favor, ingrese cuando se lo enviamos";
+    } else if (infoFinal["Metodo de pago"] === "") {
+      return "Por favor, seleccione un metodo de pago";
+    } else if (infoFinal["totalGeneral"] === 0) {
+      return "Por favor, agregue al menos un producto";
     } else {
-      return ''
+      return "";
     }
-  }
+  };
 
   return (
     <>
       {cart.length > 0 && (
         <button
           className={styles.cart}
-          onClick={() => setShowCart(prev => !prev)}
+          onClick={() => setShowCart((prev) => !prev)}
         >
           <FiShoppingBag />
           <p>${infoFinal.totalGeneral}</p>
         </button>
       )}
       {showCart && (
-        <Modal setShowModal={setShowCart} fill={'black'}>
+        <Modal setShowModal={setShowCart} fill={"black"}>
           {cart.length > 0 ? (
             <form className={styles.cartDetail} onSubmit={handleSubmit}>
               <Button setShowModal={setShowCart} />
               <h2 className={styles.cartDetail_title}>Detalles del pedido</h2>
-              {cart.map(order => {
+              {cart.map((order) => {
                 return (
                   <OrderDetail
                     key={order.nombre}
@@ -122,7 +122,7 @@ export const Cart = () => {
                     deleteFromCart={deleteFromCart}
                     modifyFromCart={modifyFromCart}
                   />
-                )
+                );
               })}
               <p>Formas de entrega</p>
               <label htmlFor="delivery" className={styles.label}>
@@ -149,10 +149,10 @@ export const Cart = () => {
               </label>
 
               <label>
-                Nombre de quien{' '}
-                {infoFinal['Forma de entrega'] === 'delivery'
-                  ? 'recibe'
-                  : 'retira'}
+                Nombre de quien{" "}
+                {infoFinal["Forma de entrega"] === "delivery"
+                  ? "recibe"
+                  : "retira"}
                 <input
                   onChange={handleChange}
                   type="text"
@@ -161,7 +161,7 @@ export const Cart = () => {
                   className={styles.input}
                 />
               </label>
-              {infoFinal['Forma de entrega'] === 'delivery' && (
+              {infoFinal["Forma de entrega"] === "delivery" && (
                 <div className={styles.direccion}>
                   <label>
                     Dirección
@@ -194,7 +194,7 @@ export const Cart = () => {
                     />
                   </label>
                   <label>
-                   Provincia 
+                    Provincia
                     <input
                       onChange={handleChange}
                       name="Provincia"
@@ -206,10 +206,10 @@ export const Cart = () => {
                 </div>
               )}
               <p>
-                ¿Cuando{' '}
-                {infoFinal['Forma de entrega'] === 'delivery'
-                  ? 'te lo enviamos'
-                  : 'lo retirás'}
+                ¿Cuando{" "}
+                {infoFinal["Forma de entrega"] === "delivery"
+                  ? "te lo enviamos"
+                  : "lo retirás"}
                 ?
               </p>
               <label htmlFor="una fecha y hora" className={styles.label}>
@@ -222,7 +222,7 @@ export const Cart = () => {
                   name="Detalle de entrega"
                 />
               </label>
-              {infoFinal['Detalle de entrega'] === 'una fecha y hora' && (
+              {infoFinal["Detalle de entrega"] === "una fecha y hora" && (
                 <>
                   <label>
                     Fecha
@@ -231,7 +231,7 @@ export const Cart = () => {
                       name="Fecha de entrega"
                       type="date"
                       required
-                      min={new Date().toISOString().split('T')[0]}
+                      min={new Date().toISOString().split("T")[0]}
                       max="2040-12-31"
                     />
                   </label>
@@ -331,5 +331,5 @@ export const Cart = () => {
         </Modal>
       )}
     </>
-  )
-}
+  );
+};
