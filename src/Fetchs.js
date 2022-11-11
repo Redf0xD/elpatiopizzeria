@@ -168,6 +168,7 @@ export const agregarVariantes = async (body) => {
   let res = await fetch(`${url}/variantes`, {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
