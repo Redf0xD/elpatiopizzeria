@@ -2,8 +2,10 @@
 import { Autoplay, EffectFade } from "swiper";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import Imagenes from "../../Images/WhatsApp Image 2022-10-19 at 12.25.50.jpg";
-console.log({ Imagenes });
+import calabresa from "../../assets/calabresa.jpg";
+import cheddar from "../../assets/cheddar.jpg";
+import primavera from "../../assets/primavera.jpg";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -105,28 +107,13 @@ export const Slider = () => {
         className={styles.slider}
       >
         <SwiperSlide>
-          <img
-            src="src/Images/WhatsApp Image 2022-10-19 at 12.25.50.jpg"
-            alt=""
-          />
+          <img src={calabresa} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            src="src/Images/WhatsApp Image 2022-10-19 at 12.28.23.jpg"
-            alt=""
-          />
+          <img src={cheddar} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            src="src/Images/WhatsApp Image 2022-10-19 at 12.39.07.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="src/Images/WhatsApp Image 2022-10-19 at 12.39.32.jpg"
-            alt=""
-          />
+          <img src={primavera} alt="" />
         </SwiperSlide>
       </Swiper>
       <div className={styles.icons}>
