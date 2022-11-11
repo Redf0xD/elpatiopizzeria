@@ -1,16 +1,26 @@
 // let token = localStorage.getItem('token');
+import { storage } from "./firebase";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 export const subirImagen = async (imagen) => {
-  let data = new FormData();
-  data.append("imagen", imagen);
-  const url = import.meta.env.VITE_APP_IMGSVR;
-  let res = await fetch(`${url}/imagen`, {
-    method: "POST",
-    body: data,
-  });
-  let imagenRes = await res.json();
-  return imagenRes;
+  const fileReference = ref(storage, "ElPatioPizzeria/" + imagen.name);
+  const task = await uploadBytes(fileReference, imagen);
+  const obtenerUrl = await getDownloadURL(task.ref);
+  console.log("PEPE", obtenerUrl);
+  return obtenerUrl;
 };
+
+// export const subirImagen = async (imagen) => {
+//   let data = new FormData();
+//   data.append("imagen", imagen);
+//   const url = import.meta.env.VITE_APP_IMGSVR;
+//   let res = await fetch(`${url}/imagen`, {
+//     method: "POST",
+//     body: data,
+//   });
+//   let imagenRes = await res.json();
+//   return imagenRes;
+// };
 
 export const obtenerCategorias = async () => {
   const url = import.meta.env.VITE_APP_URL;
