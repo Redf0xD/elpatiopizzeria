@@ -1,6 +1,11 @@
 // let token = localStorage.getItem('token');
 import { storage } from "./firebase";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
 
 export const subirImagen = async (imagen) => {
   const fileReference = ref(storage, "ElPatioPizzeria/" + imagen.name);
@@ -8,6 +13,15 @@ export const subirImagen = async (imagen) => {
   const obtenerUrl = await getDownloadURL(task.ref);
   console.log("PEPE", obtenerUrl);
   return obtenerUrl;
+};
+
+export const deleteOldImages = async (urlImagen) => {
+  const fileReference = ref(storage, urlImagen);
+  try {
+    await deleteObject(fileReference);
+  } catch (e) {
+    alert("Ha ocurrido un error");
+  }
 };
 
 // export const subirImagen = async (imagen) => {

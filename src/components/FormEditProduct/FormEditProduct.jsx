@@ -1,9 +1,9 @@
-import React, { useState, useContext, useRef } from 'react';
-import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
-import Swal from 'sweetalert2';
-import { subirImagen } from '../../Fetchs';
-import styles from './FormEditProduct.module.scss';
-import { Button } from '../Button/Button';
+import React, { useState, useContext, useRef } from "react";
+import { GlobalContext } from "../../GlobalContextDashboard/GlobalContext";
+import Swal from "sweetalert2";
+import { subirImagen, deleteOldImages } from "../../Fetchs";
+import styles from "./FormEditProduct.module.scss";
+import { Button } from "../Button/Button";
 
 export const FormEditProduct = ({
   title,
@@ -15,6 +15,7 @@ export const FormEditProduct = ({
   setShowModal,
 }) => {
   const { modifyProducts, categories } = useContext(GlobalContext);
+  const [loading, setLoading] = useState(false);
   const [producto, setProducto] = useState({
     titulo: title,
     descripcion: description,
@@ -29,10 +30,10 @@ export const FormEditProduct = ({
     e.preventDefault();
     modifyProducts(id, { ...producto });
     Swal.fire({
-      title: 'Exitoso!',
-      text: 'Haz click para continuar',
-      icon: 'success',
-      confirmButtonText: 'Aceptar',
+      title: "Exitoso!",
+      text: "Haz click para continuar",
+      icon: "success",
+      confirmButtonText: "Aceptar",
     });
     setShowModal(false);
   };
@@ -45,8 +46,11 @@ export const FormEditProduct = ({
   };
 
   const handleUploadImage = async () => {
+    setLoading(true);
     const res = await subirImagen(inputImage.current.files[0]);
-    setProducto({ ...producto, imagen: `${url}${res.url}` });
+    deleteOldImages(producto.imagen);
+    setProducto({ ...producto, imagen: res });
+    setLoading(false);
   };
 
   return (
@@ -115,7 +119,9 @@ export const FormEditProduct = ({
             ref={inputImage}
           />
         </label>
-        <button className={styles.button}>Aceptar</button>
+        <button className={styles.button} disabled={loading}>
+          Aceptar
+        </button>
       </form>
     </div>
   );
