@@ -193,7 +193,7 @@ export const Cart = () => {
                       className={styles.input}
                     />
                   </label>
-                  <label>
+                  {/* <label>
                     Provincia
                     <input
                       onChange={handleChange}
@@ -202,7 +202,7 @@ export const Cart = () => {
                       required
                       className={styles.input}
                     />
-                  </label>
+                  </label> */}
                 </div>
               )}
               <p>
@@ -246,7 +246,7 @@ export const Cart = () => {
                   </label>
                 </>
               )}
-              <label htmlFor="Lo antes posible" className={styles.label}>
+              <label htmlFor="lo antes posible" className={styles.label}>
                 Lo antes posible
                 <input
                   onChange={handleChange}
