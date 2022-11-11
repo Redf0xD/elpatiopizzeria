@@ -164,7 +164,7 @@ export const Cart = () => {
               {infoFinal["Forma de entrega"] === "delivery" && (
                 <div className={styles.direccion}>
                   <label>
-                    Dirección
+                    Dirección (Calle y Número)
                     <input
                       onChange={handleChange}
                       name="Dirección"
