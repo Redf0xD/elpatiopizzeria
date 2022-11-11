@@ -1,9 +1,9 @@
-import React, { useState, useContext, useRef } from 'react';
-import { GlobalContext } from '../../GlobalContextDashboard/GlobalContext';
-import Swal from 'sweetalert2';
-import { subirImagen } from '../../Fetchs';
-import styles from './FormEditProduct.module.scss';
-import { Button } from '../Button/Button';
+import React, { useState, useContext, useRef } from "react";
+import { GlobalContext } from "../../GlobalContextDashboard/GlobalContext";
+import Swal from "sweetalert2";
+import { subirImagen } from "../../Fetchs";
+import styles from "./FormEditProduct.module.scss";
+import { Button } from "../Button/Button";
 
 export const FormEditProduct = ({
   title,
@@ -29,10 +29,10 @@ export const FormEditProduct = ({
     e.preventDefault();
     modifyProducts(id, { ...producto });
     Swal.fire({
-      title: 'Exitoso!',
-      text: 'Haz click para continuar',
-      icon: 'success',
-      confirmButtonText: 'Aceptar',
+      title: "Exitoso!",
+      text: "Haz click para continuar",
+      icon: "success",
+      confirmButtonText: "Aceptar",
     });
     setShowModal(false);
   };
@@ -46,7 +46,7 @@ export const FormEditProduct = ({
 
   const handleUploadImage = async () => {
     const res = await subirImagen(inputImage.current.files[0]);
-    setProducto({ ...producto, imagen: `${url}${res.url}` });
+    setProducto({ ...producto, imagen: res });
   };
 
   return (
