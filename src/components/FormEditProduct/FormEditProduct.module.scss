@@ -1,4 +1,4 @@
-@use '../../index.scss' as *;
+@use "../../index.scss" as *;
 .form {
   overflow-y: auto;
   width: 100%;
@@ -21,10 +21,9 @@
     width: 100%;
     overflow: hidden;
     box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
-    img{
+    img {
       top: 0;
     }
-
   }
   .label {
     display: flex;
@@ -67,5 +66,9 @@
     cursor: pointer;
     background-color: #0d6efd;
     color: #fff;
+  }
+
+  .button:disabled {
+    background-color: gray;
   }
 }
