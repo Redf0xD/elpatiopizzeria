@@ -1,28 +1,28 @@
-import React, { useState } from 'react'
-import style from './ContadorVariantes.module.scss'
+import React, { useState } from "react";
+import style from "./ContadorVariantes.module.scss";
 
 export const ContadorVariantes = ({ titulo, precio, handleVariants, id }) => {
-  const [cantidad, setCantidad] = useState(0)
-  const handleClick = e => {
-    e.stopPropagation()
-    if (e.target.name === 'sumar') {
-      handleVariants(id, 1)
-      setCantidad(prev => {
-        return prev + 1
-      })
+  const [cantidad, setCantidad] = useState(0);
+  const handleClick = (e) => {
+    e.stopPropagation();
+    if (e.target.name === "sumar") {
+      handleVariants(id, 1);
+      setCantidad((prev) => {
+        return prev + 1;
+      });
     } else if (cantidad > 0) {
-      handleVariants(id, -1)
-      setCantidad(prev => {
-        return prev - 1
-      })
+      handleVariants(id, -1);
+      setCantidad((prev) => {
+        return prev - 1;
+      });
     }
-  }
+  };
 
   return (
     <div className={style.info_pago}>
       <div>
         <p>{titulo}</p>
-        <p>{precio}</p>
+        <p>${precio}</p>
       </div>
       <div className={style.info_cantidad}>
         <button
@@ -42,5 +42,5 @@ export const ContadorVariantes = ({ titulo, precio, handleVariants, id }) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
