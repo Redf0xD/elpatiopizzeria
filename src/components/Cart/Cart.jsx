@@ -74,7 +74,7 @@ export const Cart = () => {
     }
 
     link.href =
-      "https://api.whatsapp.com/send/?phone=5493518517879&text=" + info;
+      "https://api.whatsapp.com/send/?phone=5493518581695&text=" + info;
     link.target = "_blank";
     document.body.appendChild(link);
     link.click();

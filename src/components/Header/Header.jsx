@@ -31,7 +31,7 @@ export const Header = () => {
       </div>
       <div className={styles.header_social}>
         <a
-          href="https://wa.me/+5493518517879?text=%C2%A1Hola%20quiero%20hacer%2C%20una%20consulta%20!"
+          href="https://wa.me/+5493518581695?text=%C2%A1Hola%20quiero%20hacer%2C%20una%20consulta%20!"
           className={styles.button}
           target="_blank"
         >
