@@ -19,6 +19,7 @@ import { Modal } from "../Modal/Modal";
 import { Googlemaps } from "../Googlemaps/Googlemaps";
 import { MdDeliveryDining, MdLocationOn } from "react-icons/md";
 import { BiTimeFive } from "react-icons/bi";
+import { useRef } from "react";
 
 const horarios = {
   lunes: { de: "11:00", hasta: "23:30" },
@@ -27,7 +28,7 @@ const horarios = {
   jueves: { de: "11:00", hasta: "23:30" },
   viernes: { de: "11:00", hasta: "23:30" },
   sabado: { de: "11:00", hasta: "23:30" },
-  domingo: { de: "11:00", hasta: "23:30" },
+  domingo: { de: "11:00", hasta: "23:30" }
 };
 
 const openOrClosed = () => {
@@ -88,11 +89,21 @@ export const Slider = () => {
   const handleHourClick = () => {
     setModal(!modal);
   };
+  const sw1 = useRef();
+  const sw2 = useRef();
+  const sw3 = useRef();
+
   useEffect(() => {
     setTimeout(() => {
       setHorarios(openOrClosed());
     }, 60000);
   }, [horarios]);
+
+  useEffect(() => {
+    sw1.current.style.background = `url(${uno})`
+    sw2.current.style.background = `url(${dos})`
+    sw3.current.style.background = `url(${tres})`
+  }, [sw1, sw2, sw3]);
 
   return (
     <div className={styles.container}>
@@ -107,12 +118,15 @@ export const Slider = () => {
         className={styles.slider}
       >
         <SwiperSlide>
+          <div ref={sw1}></div>
           <img src={uno} alt="" />
         </SwiperSlide>
         <SwiperSlide>
+          <div ref={sw2}></div>
           <img src={dos} alt="" />
         </SwiperSlide>
         <SwiperSlide>
+          <div ref={sw3}></div>
           <img src={tres} alt="" />
         </SwiperSlide>
       </Swiper>
