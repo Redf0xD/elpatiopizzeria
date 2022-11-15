@@ -2,9 +2,9 @@
 import { Autoplay, EffectFade } from "swiper";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import calabresa from "../../assets/calabresa.jpg";
-import cheddar from "../../assets/cheddar.jpg";
-import primavera from "../../assets/primavera.jpg";
+import uno from "../../assets/uno.jpg";
+import dos from "../../assets/dos.jpg";
+import tres from "../../assets/tres.jpg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -107,13 +107,13 @@ export const Slider = () => {
         className={styles.slider}
       >
         <SwiperSlide>
-          <img src={calabresa} alt="" />
+          <img src={uno} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={cheddar} alt="" />
+          <img src={dos} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={primavera} alt="" />
+          <img src={tres} alt="" />
         </SwiperSlide>
       </Swiper>
       <div className={styles.icons}>
