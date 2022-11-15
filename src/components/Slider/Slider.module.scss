@@ -11,7 +11,7 @@
         width: 100%;
         position: relative;
         overflow: hidden;
-        background-size: cover;
+        object-fit: cover;
         background-repeat: no-repeat;
         background-color: black;
         div{
@@ -22,6 +22,7 @@
           filter: blur(1rem);
         }
         img {
+          object-fit: contain;
           top: 0;
         }
       }
