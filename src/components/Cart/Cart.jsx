@@ -16,13 +16,12 @@ export const Cart = () => {
     Dirección: "",
     "Entre calles": "",
     Localidad: "",
-    Provincia: "",
-    "Detalle de entrega": "",
-    "Fecha de entrega": "lo antes posible",
+    "Detalle de entrega": "lo antes posible",
+    "Fecha de entrega": "",
     "Hora de entrega": "",
     "Metodo de pago": "efectivo",
     "Datos adicionales": "",
-    totalGeneral: 0,
+    totalGeneral: 0
   });
 
   const [showCart, setShowCart] = useState(false);
@@ -84,7 +83,10 @@ export const Cart = () => {
   const handleError = () => {
     if (infoFinal["Forma de entrega"] === "") {
       return "Por favor, seleccione una forma de entrega";
-    } else if (infoFinal["Fecha de entrega"] === "") {
+    } else if (
+      infoFinal["Fecha de entrega"] === "" &&
+      infoFinal["Detalle de entrega" !== "lo antes posible"]
+    ) {
       return "Por favor, ingrese cuando se lo enviamos";
     } else if (infoFinal["Metodo de pago"] === "") {
       return "Por favor, seleccione un metodo de pago";
@@ -162,27 +164,29 @@ export const Cart = () => {
                 />
               </label>
               {infoFinal["Forma de entrega"] === "delivery" && (
-                <div className={styles.direccion}>
-                  <label>
-                    Dirección (Calle y Número)
-                    <input
-                      onChange={handleChange}
-                      name="Dirección"
-                      type="text"
-                      required
-                      className={styles.input}
-                    />
-                  </label>
-                  <label>
-                    Entre calles
-                    <input
-                      onChange={handleChange}
-                      name="Entre calles"
-                      type="text"
-                      required
-                      className={styles.input}
-                    />
-                  </label>
+                <>
+                  <div className={styles.direccion}>
+                    <label>
+                      Dirección (Calle y Número)
+                      <input
+                        onChange={handleChange}
+                        name="Dirección"
+                        type="text"
+                        required
+                        className={styles.input}
+                      />
+                    </label>
+                    <label>
+                      Entre calles
+                      <input
+                        onChange={handleChange}
+                        name="Entre calles"
+                        type="text"
+                        required
+                        className={styles.input}
+                      />
+                    </label>
+                  </div>
                   <label>
                     Localidad
                     <input
@@ -193,17 +197,7 @@ export const Cart = () => {
                       className={styles.input}
                     />
                   </label>
-                  {/* <label>
-                    Provincia
-                    <input
-                      onChange={handleChange}
-                      name="Provincia"
-                      type="text"
-                      required
-                      className={styles.input}
-                    />
-                  </label> */}
-                </div>
+                </>
               )}
               <p>
                 ¿Cuando{" "}
@@ -233,6 +227,7 @@ export const Cart = () => {
                       required
                       min={new Date().toISOString().split("T")[0]}
                       max="2040-12-31"
+                      className={styles.input}
                     />
                   </label>
                   <label>
@@ -242,6 +237,7 @@ export const Cart = () => {
                       name="Hora de entrega"
                       type="time"
                       required
+                      className={styles.input}
                     />
                   </label>
                 </>
@@ -315,7 +311,6 @@ export const Cart = () => {
                 <p>
                   Total: <span>${infoFinal.totalGeneral}</span>
                 </p>
-                {/* Que quede estatico abajo (ricky) */}
                 <button>
                   <BsCheck />
                   CONFIRMAR PEDIDO
