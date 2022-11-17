@@ -12,7 +12,7 @@ export const Cart = () => {
     React.useContext(GlobalContext);
   const [infoFinal, setInfoFinal] = useState({
     nombre: "",
-    "Forma de entrega": "delivery",
+    "Forma de entrega": "take away",
     Dirección: "",
     "Entre calles": "",
     Localidad: "",
@@ -43,6 +43,20 @@ export const Cart = () => {
         ...prev,
         "Fecha de entrega": "",
         "Hora de entrega": "",
+      }));
+
+    }
+    if (e.target.name === "Forma de entrega" && e.target.value === "delivery") {
+      setInfoFinal((prev) => ({
+        ...prev,
+        totalGeneral: prev.totalGeneral + 100,
+      }));
+
+    }
+    else {
+      setInfoFinal((prev) => ({
+        ...prev,
+        totalGeneral: prev.totalGeneral - 100,
       }));
     }
   };
@@ -135,7 +149,6 @@ export const Cart = () => {
                   type="radio"
                   id="delivery"
                   name="Forma de entrega"
-                  defaultChecked
                 />
               </label>
 
@@ -147,6 +160,7 @@ export const Cart = () => {
                   type="radio"
                   id="takeaway"
                   name="Forma de entrega"
+                  defaultChecked
                 />
               </label>
 
