@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
 import { OrderDetail } from "../OrderDetail/OrderDetail";
-import { Modal } from "../Modal/Modal";
+import { ModalCart } from "../Modal/Modal carrito";
 import { FiShoppingBag } from "react-icons/fi";
 import swal from "sweetalert2";
 import { BsCheck } from "react-icons/bs";
 import styles from "./cart.module.scss";
 import { Button } from "../Button/Button.jsx";
+import { useRef } from "react";
 export const Cart = () => {
   const { deleteFromCart, modifyFromCart, cart } =
     React.useContext(GlobalContext);
@@ -42,28 +43,10 @@ export const Cart = () => {
       setInfoFinal((prev) => ({
         ...prev,
         "Fecha de entrega": "",
-        "Hora de entrega": "",
+        "Hora de entrega": ""
       }));
-
     }
   };
-
-  const handlePrice = (e) => {
-    setInfoFinal({ ...infoFinal, [e.target.name]: e.target.value });
-    if (e.target.name === "Forma de entrega" && e.target.value === "delivery") {
-      setInfoFinal((prev) => ({
-        ...prev,
-        totalGeneral: prev.totalGeneral + 100,
-      }));
-
-    }
-    else {
-      setInfoFinal((prev) => ({
-        ...prev,
-        totalGeneral: prev.totalGeneral - 100,
-      }));
-    }
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,7 +66,11 @@ export const Cart = () => {
     for (let prop in infoFinal) {
       if (infoFinal[prop] !== "") {
         if (prop === "totalGeneral") {
-          info += ` %0A%F0%9F%94%B8Total: $${infoFinal[prop]}`;
+          if (infoFinal["Forma de entrega"] === "delivery") {
+            info += ` %0A%F0%9F%94%B8Total: $${infoFinal[prop] + 100}`;
+          } else {
+            info += ` %0A%F0%9F%94%B8Total: $${infoFinal[prop]}`;
+          }
         } else {
           info += ` %0A%F0%9F%94%B8${prop} : ${infoFinal[prop]}`;
         }
@@ -123,11 +110,20 @@ export const Cart = () => {
           onClick={() => setShowCart((prev) => !prev)}
         >
           <FiShoppingBag />
-          <p>${infoFinal.totalGeneral}</p>
+          <p>
+            $
+            {infoFinal["Forma de entrega"] === "delivery"
+              ? infoFinal.totalGeneral + 100
+              : infoFinal.totalGeneral}
+          </p>
         </button>
       )}
-      {showCart && (
-        <Modal setShowModal={setShowCart} fill={"black"}>
+      {
+        <ModalCart
+          setShowModal={setShowCart}
+          fill={"black"}
+          invisible={showCart}
+        >
           {cart.length > 0 ? (
             <form className={styles.cartDetail} onSubmit={handleSubmit}>
               <Button setShowModal={setShowCart} />
@@ -148,7 +144,7 @@ export const Cart = () => {
               <label htmlFor="delivery" className={styles.label}>
                 Delivery: $100
                 <input
-                  onChange={handlePrice}
+                  onChange={handleChange}
                   value="delivery"
                   type="radio"
                   id="delivery"
@@ -159,7 +155,7 @@ export const Cart = () => {
               <label htmlFor="takeaway" className={styles.label}>
                 Take Away
                 <input
-                  onChange={handlePrice}
+                  onChange={handleChange}
                   value="take away"
                   type="radio"
                   id="takeaway"
@@ -327,7 +323,13 @@ export const Cart = () => {
               </label>
               <div className={styles.confirmar}>
                 <p>
-                  Total: <span>${infoFinal.totalGeneral}</span>
+                  Total:{" "}
+                  <span>
+                    $
+                    {infoFinal["Forma de entrega"] === "delivery"
+                      ? infoFinal.totalGeneral + 100
+                      : infoFinal.totalGeneral}
+                  </span>
                 </p>
                 <button>
                   <BsCheck />
@@ -341,8 +343,8 @@ export const Cart = () => {
               No hay productos para mostrar
             </div>
           )}
-        </Modal>
-      )}
+        </ModalCart>
+      }
     </>
   );
 };
