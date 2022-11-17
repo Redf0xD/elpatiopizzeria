@@ -146,7 +146,7 @@ export const Cart = () => {
               })}
               <p>Formas de entrega</p>
               <label htmlFor="delivery" className={styles.label}>
-                Delivery
+                Delivery: $100
                 <input
                   onChange={handlePrice}
                   value="delivery"
