@@ -46,6 +46,10 @@ export const Cart = () => {
       }));
 
     }
+  };
+
+  const handlePrice = (e) => {
+    setInfoFinal({ ...infoFinal, [e.target.name]: e.target.value });
     if (e.target.name === "Forma de entrega" && e.target.value === "delivery") {
       setInfoFinal((prev) => ({
         ...prev,
@@ -59,7 +63,7 @@ export const Cart = () => {
         totalGeneral: prev.totalGeneral - 100,
       }));
     }
-  };
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -144,7 +148,7 @@ export const Cart = () => {
               <label htmlFor="delivery" className={styles.label}>
                 Delivery
                 <input
-                  onChange={handleChange}
+                  onChange={handlePrice}
                   value="delivery"
                   type="radio"
                   id="delivery"
@@ -155,7 +159,7 @@ export const Cart = () => {
               <label htmlFor="takeaway" className={styles.label}>
                 Take Away
                 <input
-                  onChange={handleChange}
+                  onChange={handlePrice}
                   value="take away"
                   type="radio"
                   id="takeaway"
