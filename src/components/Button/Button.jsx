@@ -6,7 +6,7 @@ export const Button = ({ fill, setShowModal }) => {
     setShowModal((prev) => !prev);
   };
   return (
-    <button onClick={functionModal} className={styles.button}>
+    <button type='button' onClick={functionModal} className={styles.button}>
       <FaArrowLeft style={{ fill }} />
     </button>
   );

@@ -7,7 +7,6 @@ import swal from "sweetalert2";
 import { BsCheck } from "react-icons/bs";
 import styles from "./cart.module.scss";
 import { Button } from "../Button/Button.jsx";
-import { useRef } from "react";
 export const Cart = () => {
   const { deleteFromCart, modifyFromCart, cart } =
     React.useContext(GlobalContext);
@@ -55,7 +54,7 @@ export const Cart = () => {
       new swal("Error", errores, "error");
       return;
     }
-    var link = document.createElement("a");
+
     let info =
       "Hola El patio pizzeria! Quiero hacer un pedido, este es el detalle: ";
     {
@@ -77,11 +76,11 @@ export const Cart = () => {
       }
     }
 
-    link.href =
-      "https://api.whatsapp.com/send/?phone=5493518581695&text=" + info;
-    link.target = "_blank";
-    document.body.appendChild(link);
-    link.click();
+    window.open(
+      "https://api.whatsapp.com/send/?phone=5493518581695&text=" + info,
+      '_blank'
+    );
+
     setShowCart((prev) => !prev);
   };
 

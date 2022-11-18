@@ -17,6 +17,7 @@ export const OrderDetail = ({
       <div className={styles.orderDetail_info}>
         <div className={styles.info_cantidad}>
           <button
+            type='button'
             disabled={cantidad === 1}
             name="sub"
             onClick={(e) => modify(nombre, e)}
@@ -26,6 +27,7 @@ export const OrderDetail = ({
           </button>
           <p>{cantidad}</p>
           <button
+            type='button'
             name="add"
             onClick={(e) => modify(nombre, e)}
             className={styles.button}
@@ -35,6 +37,7 @@ export const OrderDetail = ({
         </div>
         <p className={styles.price}>${precio * cantidad}</p>
         <button
+          type='button'
           onClick={() => deleteFromCart(nombre)}
           className={styles.button}
         >
