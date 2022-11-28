@@ -1,6 +1,5 @@
 export const obtenerCategorias = async () => {
   const url = import.meta.env.VITE_APP_URL;
-  console.log({ url, obtenerCategorias: "Categorias" });
   let res = await fetch(`${url}/categorias/getCategorias`, {
     method: "POST",
     headers: {
@@ -26,5 +25,6 @@ export const obtenerProductos = async () => {
     }),
   });
   let productos = await res.json();
+  console.log({productos})
   return productos;
 };

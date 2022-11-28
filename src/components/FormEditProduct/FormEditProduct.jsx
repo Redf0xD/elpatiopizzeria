@@ -13,6 +13,7 @@ export const FormEditProduct = ({
   categoryId,
   id,
   setShowModal,
+  available
 }) => {
   const { modifyProducts, categories } = useContext(GlobalContext);
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ export const FormEditProduct = ({
     precio: price,
     imagen: image,
     categoriaId: categoryId,
+    disponible: available
   });
   const url = import.meta.env.VITE_APP_IMGSVR;
   const inputImage = useRef(null);
@@ -33,16 +35,23 @@ export const FormEditProduct = ({
       title: "Exitoso!",
       text: "Haz click para continuar",
       icon: "success",
-      confirmButtonText: "Aceptar",
+      confirmButtonText: "Aceptar"
     });
     setShowModal(false);
   };
 
   const handleChange = (e) => {
-    setProducto({
-      ...producto,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "disponible") {
+      setProducto({
+        ...producto,
+        [e.target.name]: e.target.checked
+      });
+    } else {
+      setProducto({
+        ...producto,
+        [e.target.name]: e.target.value
+      });
+    }
   };
 
   const handleUploadImage = async () => {
@@ -106,6 +115,19 @@ export const FormEditProduct = ({
             );
           })}
         </select>
+        <div className={styles.labelH}>
+          <p>Disponible</p>
+          <div className={styles.toggle}>
+            <input
+              type="checkbox"
+              id="switch"
+              defaultChecked={producto.disponible}
+              onChange={handleChange}
+              name="disponible"
+            />
+            <label htmlFor="switch"></label>
+          </div>
+        </div>
         <div className={styles.img}>
           <img className="img" src={producto.imagen} alt="imagen" />
         </div>

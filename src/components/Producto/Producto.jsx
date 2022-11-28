@@ -12,6 +12,7 @@ export const Producto = ({
   price,
   id,
   variantes,
+  available
 }) => {
   const { getVariants } = React.useContext(GlobalContext);
   const [showModal, setShowModal] = useState(false);
@@ -55,9 +56,15 @@ export const Producto = ({
               <p className={styles.product_price}>${price}</p>
             )}
           </div>
-          <button className={styles.product_button} onClick={handleClick}>
-            Pedir +
-          </button>
+          {available ? (
+            <button className={styles.product_button} onClick={handleClick}>
+              Pedir +
+            </button>
+          ) : (
+            <button className={styles.product_button} onClick={handleClick} disabled={!available}>
+              No disponible
+            </button>
+          )}
         </div>
         <div className={styles.product_img}>
           <img src={image} alt={title} />

@@ -40,6 +40,10 @@
       cursor: pointer;
       border-radius: 10%;
       @include flex(row, center, center);
+      &:disabled{
+        opacity: 0.5;
+        cursor: not-allowed;
+      } 
     }
   }
   .product_img {

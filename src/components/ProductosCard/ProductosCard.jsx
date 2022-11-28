@@ -17,35 +17,36 @@ export const ProductosCard = ({
   image,
   price,
   categoryId,
-  variantes
+  variantes,
+  available
 }) => {
-  const { deleteProducts } = useContext(GlobalContext)
-  const [modal, setModal] = useState(false)
-  const [modal2, setModal2] = useState(false)
-  const [modal3, setModal3] = useState(false)
+  const { deleteProducts } = useContext(GlobalContext);
+  const [modal, setModal] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [modal3, setModal3] = useState(false);
 
   const handleClick = () => {
     Swal.fire({
-      title: '¿Quieres eliminar el producto?',
+      title: "¿Quieres eliminar el producto?",
       showDenyButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: 'No',
+      confirmButtonText: "Si",
+      denyButtonText: "No",
       customClass: {
-        actions: 'my-actions',
-        confirmButton: 'order-2',
-        denyButton: 'order-3'
+        actions: "my-actions",
+        confirmButton: "order-2",
+        denyButton: "order-3"
       }
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        deleteProducts(id)
-        Swal.fire('Exitoso', '', 'success')
+        deleteProducts(id);
+        Swal.fire("Exitoso", "", "success");
       }
-    })
-  }
+    });
+  };
 
   const handleEditClick = () => {
-    setModal(true)
-  }
+    setModal(true);
+  };
 
   return (
     <section className={styles.producto}>
@@ -70,6 +71,7 @@ export const ProductosCard = ({
                 price={price}
                 image={image}
                 categoryId={categoryId}
+                available={available}
                 setShowModal={setModal}
               />
             </Modal>
@@ -100,5 +102,5 @@ export const ProductosCard = ({
         <img src={image} alt="" />
       </div>
     </section>
-  )
-}
+  );
+};

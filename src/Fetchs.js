@@ -11,7 +11,6 @@ export const subirImagen = async (imagen) => {
   const fileReference = ref(storage, "ElPatioPizzeria/" + imagen.name);
   const task = await uploadBytes(fileReference, imagen);
   const obtenerUrl = await getDownloadURL(task.ref);
-  console.log("PEPE", obtenerUrl);
   return obtenerUrl;
 };
 
@@ -62,7 +61,6 @@ export const agregarCategorias = async (categoria) => {
     body: JSON.stringify(categoria),
   });
   let categoriaRes = await res.json();
-  console.log(categoriaRes);
   return categoriaRes;
 };
 
@@ -105,6 +103,7 @@ export const obtenerProductos = async () => {
     }),
   });
   let productos = await res.json();
+  console.log({productos})
   return productos;
 };
 
@@ -137,6 +136,7 @@ export const borrarProductos = async (id) => {
 
 export const modificarProductos = async (id, productoModificado) => {
   const url = import.meta.env.VITE_APP_URL;
+  console.log({ productoModificado })
   let res = await fetch(`${url}/productos/${id}`, {
     method: "PUT",
     headers: {
@@ -146,6 +146,7 @@ export const modificarProductos = async (id, productoModificado) => {
     body: JSON.stringify(productoModificado),
   });
   let productoModificadoRes = await res.json();
+  console.log({ productoModificadoRes })
   return productoModificadoRes;
 };
 

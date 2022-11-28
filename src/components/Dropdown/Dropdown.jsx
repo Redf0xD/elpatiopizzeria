@@ -45,6 +45,7 @@ export const Dropdown = ({ title, subtitle, image, product }) => {
                 description={product?.descripcion}
                 variantes={product?.variantes}
                 price={product?.precio}
+                available={product?.disponible}
                 id={product?.id}
               />
             )

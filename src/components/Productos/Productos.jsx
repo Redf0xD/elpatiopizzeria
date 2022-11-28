@@ -69,6 +69,7 @@ export const Productos = () => {
               price={p?.precio}
               image={p?.imagen}
               categoryId={p?.categoriaId}
+              available={p.disponible}
             />
           );
         })}
